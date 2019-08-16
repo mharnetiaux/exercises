@@ -10,3 +10,5 @@
 - After you complete the exercise, provide any notes on your code below such as how to run your example
 
 ## Candidate Notes:
+
+- `cd` into `PS-palindrome-search` and run `node search.js`
