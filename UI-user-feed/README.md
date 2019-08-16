@@ -11,3 +11,10 @@
 - After you complete the exercise, provide notes below on how your code can be ran whether it be by simply opening a index.html file or through an npm command
 
 ## Candidate Notes:
+- install Node
+- `cd` into `UI-user-feed`
+- run `npm install`
+- run `npm start` and navigate to `localhost:8080` 
+
+## Optionally
+- open `index.html` file in browser - located in `dist/` directory. 
