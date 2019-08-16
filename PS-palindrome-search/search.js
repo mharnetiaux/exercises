@@ -1,5 +1,5 @@
 
-const str1 = "A man, a plan, a canal. Panama.";
+const str1 = "My dad is a racecar athlete";
 const str2 = "Mom and brother.";
 const str3 = "";
 
