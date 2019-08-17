@@ -1,8 +1,6 @@
-
 const str1 = "My dad is a racecar athlete";
 const str2 = "Mom and brother.";
 const str3 = "";
-
 
 function palindrome(str) {
   const obj = {};
@@ -33,7 +31,7 @@ function palindrome(str) {
   max = Math.max(...arr);
   arr.splice(arr.indexOf(max), 1);
   secondMax = Math.max(...arr);
-  return "Found Palindrome: " + obj[secondMax];
+  return `Found Palindrome: ${obj[secondMax]};`
 }
 
 console.log(palindrome(str1));
