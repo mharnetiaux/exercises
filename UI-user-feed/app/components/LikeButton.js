@@ -9,7 +9,7 @@ class LikeButton extends Component {
         this.handleLike = this.handleLike.bind(this);
     }
     // Increment like count
-    handleLike(){
+    handleLike() {
         this.setState({likes: this.state.likes + 1})
     }
     render() {

@@ -42,7 +42,6 @@ class ChatApp extends Component {
                 if (!response.ok) {
                     throw Error(response.statusText);
                 }
-                this.setState({ loading: false });
                 return response;
             })
             .then((response) => response.json())
@@ -60,8 +59,8 @@ class ChatApp extends Component {
     componentDidMount() {
         this.getMessages(messages);
     }
-
     render() {
+        console.log(this.state);
         const messageCount = this.state.messages.length;
         return (
             <main>
