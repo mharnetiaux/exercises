@@ -20,18 +20,20 @@ export function messagesFetchDataSuccess(messages) {
 }
 
 
-export function errorAfterFiveSeconds() {
+/*export function errorAfterFiveSeconds() {
     return (dispatch) => {
         setTimeout(() => {
             dispatch(messagesError(true));
         }, 5000);
     };
-}
+}*/
 
 export function messagesFetchData(url) {
     return (dispatch) => {
         dispatch(messagesLoading(true));
-        fetch(url)
+        fetch(url, {
+            method: 'get'
+        })
             .then((response) => {
                 if (!response.ok) {
                     throw Error(response.statusText);
@@ -52,4 +54,26 @@ export function messagesFetchData(url) {
             .catch(() => dispatch(messagesError(true)));
     };
 }
+
+/*export function messagesSendData(url, data) {
+    return (dispatch) => {
+        //dispatch(messagesLoading(true));
+        fetch(url, {
+            method: 'post',
+            body: JSON.stringify(data)
+        })
+        .then((response) => {
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
+            //dispatch(messagesLoading(false));
+            return response;
+        })
+        .then((response) => response.json())
+        .then((data) => {
+           console.log("Data was sent: " + data);
+        })
+        .catch(() => dispatch(messagesError(true)));
+    };
+}*/
 

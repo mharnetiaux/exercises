@@ -1,5 +1,5 @@
 import './styles/less/styles.less'
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { messagesFetchData } from './state/actions/messages.js';
 import {messages} from '../api/endpoints.js';
