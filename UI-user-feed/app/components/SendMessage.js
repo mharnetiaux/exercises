@@ -25,7 +25,7 @@ class SendMessage extends Component {
                     value={this.state.input}
                     type="text"
                     placeholder="Enter message"
-                    autoFocus="true"
+                    autoFocus={true}
                 />
                 <button>Send</button>
             </form>
