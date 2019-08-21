@@ -9,9 +9,10 @@ import SendMessage from './components/SendMessage.js';
 class ChatApp extends Component {
     constructor() {
         super();
-        // Redux move
         this.state = {
-            messages: []
+            messages: [],
+            loading: false,
+            error: false
         };
         this.sendMessage = this.sendMessage.bind(this);
         this.sendLike = this.sendLike.bind(this);
@@ -27,21 +28,21 @@ class ChatApp extends Component {
         );
         this.setState({messages});
     }
-    // Update 'likes' prop on click
-    // Work in progress...
-    sendLike(like) {
-        console.log(like);
+    sendLike(like, index) {
+        const likes = this.state.messages[index];
+        this.state.messages[index].likes = like;
+        this.setState({likes})
     }
     // Method to make GET request
     getMessages(url) {
+        this.setState({ loading: true });
         const messages = this.state.messages;
-        // Fetch API - AJAX
-        // Add method, headers?
         fetch(url)
             .then((response) => {
                 if (!response.ok) {
                     throw Error(response.statusText);
                 }
+                this.setState({ loading: false });
                 return response;
             })
             .then((response) => response.json())
@@ -53,20 +54,19 @@ class ChatApp extends Component {
                 // populate state messages
                 this.setState({messages})
             })
-            .catch(() => console.log("Error"));
+            .catch(() => this.setState({ errored: true }));
     }
     // Make GET request once app is rendered
     componentDidMount() {
         this.getMessages(messages);
     }
     render() {
-        console.log(this.state);
         const messageCount = this.state.messages.length;
         return (
             <main>
                 <header><h2 className="messageCount">( Messages <span>{messageCount} )</span>...</h2></header>
                 <section>
-                    {this.state.messages.length ? <MessageContainer messages={this.state.messages} sendLike={this.sendLike} /> : <Loading/>}
+                    {!this.state.loading ? <MessageContainer messages={this.state.messages} sendLike={this.sendLike} /> : <Loading/>}
                 </section>
                 <footer><SendMessage sendMessage={this.sendMessage} /></footer>
             </main>
