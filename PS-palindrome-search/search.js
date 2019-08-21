@@ -18,19 +18,20 @@ function palindrome(str) {
                 const string = str.slice(i, occurrence + 1);
                 const stringReverse = string.split('').reverse().join('');
                 if(string === stringReverse) {
-                  obj[string.length] = string;
-                  arr.push(string.length);
+                    obj[string.length] = string;
+                    arr.push(string.length);
                 }
             }
         }
     }
     arrLength = arr.length;
-    arr = arr.sort().filter((length, i) => arr.indexOf(length) === i);
+    arr = [...new Set(arr)].sort();
     if(arrLength === 0){
         return "No Palindrome exists"
     }else if(arrLength === 1) {
         return "No Second Palindrome exists"
     }
+    console.log(arr);
     max = Math.max(...arr);
     arr.splice(arr.indexOf(max), 1);
     secondMax = Math.max(...arr);
