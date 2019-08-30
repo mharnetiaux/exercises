@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "replace 'true' 'false' webpack/enviornment.js & webpack -p",
     "start": "rm -f -r ./dist & replace 'false' 'true' webpack/enviornment.js & babel-node -- server/server.js",
-    "build": "replace 'true' 'false' webpack/enviornment.js & webpack -p"
+    "test": "mocha ./tests"
   },
   "author": "Matt Harnetiaux <mattskyh@gmail.com>",
   "license": "ISC",
@@ -23,6 +24,7 @@
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "loader-utils": "^1.1.0",
+    "mocha": "^6.2.0",
     "node-sass": "^4.5.3",
     "react": "^16.8.6",
     "react-addons-test-utils": "^15.6.2",
