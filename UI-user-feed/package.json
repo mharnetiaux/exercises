@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "replace 'true' 'false' webpack/enviornment.js & webpack -p",
-    "start": "rm -f -r ./dist & replace 'false' 'true' webpack/enviornment.js & babel-node -- server/server.js",
+    "start": "replace 'false' 'true' webpack/enviornment.js & babel-node -- server/server.js",
     "test": "mocha ./tests"
   },
   "author": "Matt Harnetiaux <mattskyh@gmail.com>",
