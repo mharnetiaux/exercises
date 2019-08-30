@@ -1,7 +1,7 @@
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import environment from './webpack/enviornment.js';
+import environment from './webpack/environment.js';
 import path from 'path';
 
 const config = {
