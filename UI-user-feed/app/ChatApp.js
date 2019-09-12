@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { messagesFetchData, messageSaveLocalStorage, messagesFetchLocalStorage } from './state/actions/messages.js';
 import {messages} from '../api/endpoints.js';
 import MessageContainer from './components/MessageContainer.js'
-import Loading from './components/Loading.js';
 import SendMessage from './components/SendMessage.js';
 
 class ChatApp extends Component {
@@ -52,9 +51,11 @@ class ChatApp extends Component {
             <main>
                 <header><h2 className="messageCount">( Messages <span>{ messageCount } )</span>...</h2></header>
                 <section>
-                    { !this.props.loading ? <MessageContainer messages={ this.props.messages } sendLike={ this.sendLike } /> : <Loading/> }
+                    <MessageContainer messages={ this.props.messages } sendLike={ this.sendLike } />
                 </section>
-                <footer><SendMessage sendMessage={ this.sendMessage } /></footer>
+                <footer>
+                    <SendMessage sendMessage={ this.sendMessage } />
+                </footer>
             </main>
         );
     }
