@@ -52,7 +52,7 @@ class ChatApp extends Component {
             <main>
                 <header><h2 className="messageCount">( Messages <span>{ messageCount } )</span>...</h2></header>
                 <section>
-                    {!this.props.loading ? <MessageContainer messages={ this.props.messages } sendLike={ this.sendLike} /> : <Loading/> }
+                    { !this.props.loading ? <MessageContainer messages={ this.props.messages } sendLike={ this.sendLike } /> : <Loading/> }
                 </section>
                 <footer><SendMessage sendMessage={ this.sendMessage } /></footer>
             </main>
@@ -62,9 +62,7 @@ class ChatApp extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        messages: state.messages,
-        error: state.error,
-        loading: state.loading
+        messages: state.messages
     };
 };
 

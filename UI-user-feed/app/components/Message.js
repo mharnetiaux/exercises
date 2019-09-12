@@ -7,9 +7,9 @@ const Message = (props) => {
         <span>
             {chatContent.map((content, id) =>
                 <ul key={id} className="message">
-                    <li className="user">{content.user}</li>
-                    <li className="message">{content.value}</li>
-                    <li><LikeButton likeCount={content.likes} sendLike={props.sendLike} content={content.user} index={id}/></li>
+                    <li className="user">{ content.user }</li>
+                    <li className="message">{ content.value }</li>
+                    <li><LikeButton likeCount={ content.likes } sendLike={ props.sendLike } content={ content.user } index={ id }/></li>
                 </ul>
             )}
         </span>

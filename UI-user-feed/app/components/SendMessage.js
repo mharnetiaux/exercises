@@ -6,6 +6,8 @@ class SendMessage extends Component {
         this.state = {
             input: ""
         };
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
     // Collect Input
     onChange(e) {
@@ -14,7 +16,7 @@ class SendMessage extends Component {
     // Pass state through callback
     onSubmit(e) {
         e.preventDefault();
-        this.setState({input: ""});
+        this.setState({ input: ""} );
         this.props.sendMessage(this.state.input);
     }
     render() {

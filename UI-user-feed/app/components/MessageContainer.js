@@ -5,8 +5,10 @@ class MessageContainer extends Component {
     constructor(props){super(props)}
     render() {
         const messages = this.props.messages;
+        const sendLike = this.props.sendLike;
+
         return(
-            <Message messages={messages} sendLike={this.props.sendLike}/>
+            <Message messages={ messages } sendLike={ sendLike }/>
         );
     }
 }
