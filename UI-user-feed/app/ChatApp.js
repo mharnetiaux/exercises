@@ -26,6 +26,7 @@ class ChatApp extends Component {
         this.setState({ messages });
     }
 
+    // Update state messages property on submit
     sendLike(like, index) {
         const likes = this.props.messages[index];
         const messages = this.props.messages;
@@ -45,7 +46,6 @@ class ChatApp extends Component {
             this.props.fetchMessages(messages);
         }
     }
-
     render() {
         const messageCount = this.props.messages.length;
         return (
