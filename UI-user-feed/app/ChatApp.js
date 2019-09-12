@@ -7,11 +7,13 @@ import MessageContainer from './components/MessageContainer.js'
 import SendMessage from './components/SendMessage.js';
 
 class ChatApp extends Component {
+
     constructor(props) {
         super(props);
         this.sendMessage = this.sendMessage.bind(this);
         this.sendLike = this.sendLike.bind(this);
     }
+
     // Update state messages on submit
     sendMessage(message){
         const messages = this.props.messages;
@@ -45,6 +47,7 @@ class ChatApp extends Component {
             this.props.fetchMessages(messages);
         }
     }
+
     render() {
         const messageCount = this.props.messages.length;
         return (
