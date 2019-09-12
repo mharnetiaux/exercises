@@ -19,14 +19,19 @@ export function messagesFetchDataSuccess(messages) {
     }
 }
 
+export function messageSaveLocalStorage(messages) {
+    return {
+        type: 'MESSAGES_LOCAL_STORAGE_SUCCESS',
+        messages: localStorage.setItem('messages', JSON.stringify(messages))
+    }
+}
 
-/*export function errorAfterFiveSeconds() {
-    return (dispatch) => {
-        setTimeout(() => {
-            dispatch(messagesError(true));
-        }, 5000);
-    };
-}*/
+export function messagesFetchLocalStorage() {
+    return {
+        type: 'MESSAGES_FETCH_LOCAL_STORAGE_SUCCESS',
+        messages: JSON.parse(localStorage.getItem('messages'))
+    }
+}
 
 export function messagesFetchData(url) {
     return (dispatch) => {
@@ -42,13 +47,13 @@ export function messagesFetchData(url) {
                 return response;
             })
             .then((response) => response.json())
-            .then((obj) => {
+            .then((data) => {
                 const messages = [];
                 // Orchestrate data to put in state messages
-                Object.keys(obj.feed).map(item => {
-                    messages.push(obj.feed[item]);
+                Object.keys(data.feed).map(item => {
+                    messages.push(data.feed[item]);
                 });
-                // populate state messages
+                // Populate state messages
                 dispatch(messagesFetchDataSuccess(messages));
             })
             .catch(() => dispatch(messagesError(true)));
