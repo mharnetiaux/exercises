@@ -1,17 +1,3 @@
-export function messagesError(bool) {
-    return {
-        type: 'MESSAGES_ERROR',
-        error: bool
-    }
-}
-
-export function messagesLoading(bool) {
-    return {
-        type: 'MESSAGES_LOADING',
-        loading: bool
-    }
-}
-
 export function messagesFetchDataSuccess(messages) {
     return {
         type: 'MESSAGES_FETCH_DATA_SUCCESS',
@@ -35,7 +21,6 @@ export function messagesFetchLocalStorage() {
 
 export function messagesFetchData(url) {
     return (dispatch) => {
-        dispatch(messagesLoading(true));
         fetch(url, {
             method: 'get'
         })
@@ -43,7 +28,6 @@ export function messagesFetchData(url) {
                 if (!response.ok) {
                     throw Error(response.statusText);
                 }
-                dispatch(messagesLoading(false));
                 return response;
             })
             .then((response) => response.json())
@@ -56,7 +40,7 @@ export function messagesFetchData(url) {
                 // Populate state messages
                 dispatch(messagesFetchDataSuccess(messages));
             })
-            .catch(() => dispatch(messagesError(true)));
+            .catch(() => console.log('Error'));
     };
 }
 
