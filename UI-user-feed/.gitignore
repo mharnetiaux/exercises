@@ -1,3 +1,4 @@
+dist/*
 env.jsdules/
 package-lock.json
 .idea/

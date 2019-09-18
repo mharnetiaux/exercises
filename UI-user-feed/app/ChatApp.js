@@ -31,6 +31,7 @@ class ChatApp extends Component {
     sendLike(like, index) {
         const likes = this.props.messages[index];
         const messages = this.props.messages;
+        console.log(likes);
         messages[index].likes = like;
         this.props.updateLocalStorage(messages);
         this.setState({ likes });
