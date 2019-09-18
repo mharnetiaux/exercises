@@ -1,9 +1,9 @@
-const environment = {
-    isDev: false,
+const env = {
+    isDev: true,
     hotModule: function() {
         if (this.isDev) {
             return [
-                'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false',
+                'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
                 './app/index.js'
             ]
         }
@@ -11,9 +11,9 @@ const environment = {
     },
     embeddedStyles: function() {
         if (this.isDev) {
-            return false;
+            return true;
         }
     }
 };
 
-export default environment;
+export default env;

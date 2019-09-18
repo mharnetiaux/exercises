@@ -1,11 +1,11 @@
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import environment from './webpack/environment.js';
+import env from './webpack/env.js';
 import path from 'path';
 
 const config = {
-    entry: environment.hotModule(),
+    entry: env.hotModule(),
     output: {
         path: __dirname + '/dist',
         filename: 'scripts/[name].bundle.js',
@@ -47,7 +47,7 @@ const config = {
     plugins: [
         new ExtractTextPlugin({
             filename: 'styles/[name].bundle.css',
-            disable: environment.embeddedStyles()
+            disable: env.embeddedStyles()
         }),
         new HtmlWebpackPlugin({
             tile: 'Home Page Template',
