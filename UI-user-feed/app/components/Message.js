@@ -9,7 +9,7 @@ const Message = (props) => {
                 <ul key={id} className="message">
                     <li className="user">{ content.user }</li>
                     <li className="message">{ content.value }</li>
-                    <li><LikeButton likeCount={ content.likes } sendLike={ props.sendLike } content={ content.user } index={ id }/></li>
+                    <li><LikeButton likes={ content.likes } sendLike={ props.sendLike } content={ content.user } index={ id }/></li>
                 </ul>
             )}
         </span>

@@ -5,7 +5,7 @@ class LikeButton extends Component {
         super(props);
         this.state = {
             index: this.props.index,
-            likes: this.props.likeCount
+            likes: this.props.likes
         };
         this.handleLike = this.handleLike.bind(this);
     }

@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { messagesFetchData, messageSaveLocalStorage, messagesFetchLocalStorage } from './state/actions/messages.js';
 import {messages} from '../api/endpoints.js';
-import MessageContainer from './components/MessageContainer.js'
+import Message from './components/Message.js'
 import SendMessage from './components/SendMessage.js';
 
 class ChatApp extends Component {
@@ -54,7 +54,7 @@ class ChatApp extends Component {
             <main>
                 <header><h2 className="messageCount">( Messages <span>{ messageCount } )</span>...</h2></header>
                 <section>
-                    <MessageContainer messages={ this.props.messages } sendLike={ this.sendLike } />
+                    <Message messages={ this.props.messages } sendLike={ this.sendLike } />
                 </section>
                 <footer>
                     <SendMessage sendMessage={ this.sendMessage } />
