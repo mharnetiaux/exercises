@@ -1,5 +1,5 @@
-webpack/env.js
 dist/*
+webpack/env.js
 env.jsdules/
 package-lock.json
 .idea/
