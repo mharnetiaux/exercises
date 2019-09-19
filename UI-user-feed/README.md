@@ -14,7 +14,4 @@
 - install Node
 - `cd` into `UI-user-feed`
 - run `npm install`
-- run `npm start` and navigate to `localhost:8080` 
-
-## Optionally
-- open `index.html` file in browser - located in `dist/` directory. 
+- run `npm start` and navigate to `localhost:8080`

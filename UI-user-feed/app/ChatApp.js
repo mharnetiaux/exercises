@@ -2,7 +2,7 @@ import './styles/less/styles.less'
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { messagesFetchData, messageSaveLocalStorage, messagesFetchLocalStorage, messagesSendData } from './state/actions/messages.js';
-import {messageEndPont} from '../api/endpoints.js';
+import { messageEndPoint } from '../api/messageEndPoint.js';
 import Message from './components/Message.js'
 import SendMessage from './components/SendMessage.js';
 
@@ -35,11 +35,11 @@ class ChatApp extends Component {
     componentDidMount() {
         const messages = this.props.messages;
         if(localStorage && localStorage.getItem('messages')) {
-            console.log(`componentDidMount(${'\u221A'}) ${'\u2192'} localStorage(${'\u221A'})`);
+            console.log(`React componentDidMount ${'\u221A'}  ${'\u2192'}  Local storage called ${'\u221A'}`);
             this.props.fetchLocalStorage(messages);
-        }else {
-            console.log(`componentDidMount(${'\u221A'}) ${'\u2192'} fetch(${'\u221A'})`);
-            this.props.fetchMessages(messageEndPont);
+        } else {
+            console.log(`React componentDidMount ${'\u221A'}  ${'\u2192'}  Fetch called ${'\u221A'}`);
+            this.props.fetchMessages(messageEndPoint);
         }
     }
 

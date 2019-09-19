@@ -1,3 +1,5 @@
+import { logClientMounted } from '../../utils/http/initStateSuccess.js';
+
 export function messagesFetchDataSuccess(messages) {
     return {
         type: 'MESSAGES_FETCH_DATA_SUCCESS',
@@ -11,19 +13,16 @@ export function messagesFetchData(url) {
             method: 'get'
         })
         .then((response) => {
-            console.log(`Response: ${response.status} ${response.ok} ${'\u221A'}`);
+            console.log(`Fetch response: ${ response.status } ${ response.ok } ${ '\u221A' }`);
             return response.json();
         })
         .then((initState) => {
-            console.log(`JSON ${'\u2192'} to JavaScript ${'\u221A'}`);
-            console.log(`${'\u2666'}${'\u2666'}${'\u2666'} ${'\u21D3'}${'\u21D3'}${'\u21D3'} ${'\u2666'}${'\u2666'}${'\u2666'} ${'\u221A'}`);
-            console.log(initState);
-            console.log(`${'\u2666'}${'\u2666'}${'\u2666'} ${'\u21D1'}${'\u21D1'}${'\u21D1'} ${'\u2666'}${'\u2666'}${'\u2666'} ${'\u221A'}`);
+            logClientMounted(initState);
             dispatch(messagesFetchDataSuccess(initState['feed']));
         })
         .catch((response) => {
-            console.log(`Fetch: ${response} ${'\u221A'}`);
-            throw Error(`${response}`);
+            console.log(`Fetch error: ${ response } ${ '\u221A' }`);
+            throw Error(`${ response }`);
         });
     };
 }
@@ -42,21 +41,15 @@ export function messagesFetchLocalStorage() {
     }
 }
 
-export function messagesSendDataSuccess(messages) {
-    return {
-        type: 'MESSAGES_SEND_DATA_SUCCESS',
-        messages: messages
-    }
-}
-
 export function messagesSendData(messages, input) {
     messages.push({
         "user": "User 1",
         "value": input,
         "likes": 13
     });
-    return (dispatch) => {
-        dispatch(messagesSendDataSuccess(messages));
+    return {
+        type: 'MESSAGES_SEND_DATA_SUCCESS',
+        messages: messages
     }
 }
 
