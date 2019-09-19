@@ -4,6 +4,8 @@ export function messages(state = [], action) {
             return action.messages;
         case 'MESSAGES_FETCH_LOCAL_STORAGE_SUCCESS':
             return action.messages;
+        case 'MESSAGES_SEND_DATA_SUCCESS':
+            return action.messages;
         default:
             return state;
     }

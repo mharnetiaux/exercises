@@ -1,22 +1,31 @@
-export function messagesError(bool) {
-    return {
-        type: 'MESSAGES_ERROR',
-        error: bool
-    }
-}
-
-export function messagesLoading(bool) {
-    return {
-        type: 'MESSAGES_LOADING',
-        loading: bool
-    }
-}
-
 export function messagesFetchDataSuccess(messages) {
     return {
         type: 'MESSAGES_FETCH_DATA_SUCCESS',
         messages: messages
     }
+}
+
+export function messagesFetchData(url) {
+    return (dispatch) => {
+        fetch(url, {
+            method: 'get'
+        })
+        .then((response) => {
+            console.log(`Response: ${response.status} ${response.ok} ${'\u221A'}`);
+            return response.json();
+        })
+        .then((initState) => {
+            console.log(`JSON ${'\u2192'} to JavaScript ${'\u221A'}`);
+            console.log(`${'\u2666'}${'\u2666'}${'\u2666'} ${'\u21D3'}${'\u21D3'}${'\u21D3'} ${'\u2666'}${'\u2666'}${'\u2666'} ${'\u221A'}`);
+            console.log(initState);
+            console.log(`${'\u2666'}${'\u2666'}${'\u2666'} ${'\u21D1'}${'\u21D1'}${'\u21D1'} ${'\u2666'}${'\u2666'}${'\u2666'} ${'\u221A'}`);
+            dispatch(messagesFetchDataSuccess(initState['feed']));
+        })
+        .catch((response) => {
+            console.log(`Fetch: ${response} ${'\u221A'}`);
+            throw Error(`${response}`);
+        });
+    };
 }
 
 export function messageSaveLocalStorage(messages) {
@@ -33,52 +42,21 @@ export function messagesFetchLocalStorage() {
     }
 }
 
-export function messagesFetchData(url) {
-    return (dispatch) => {
-        dispatch(messagesLoading(true));
-        fetch(url, {
-            method: 'get'
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                }
-                dispatch(messagesLoading(false));
-                return response;
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                const messages = [];
-                // Orchestrate data to put in state messages
-                Object.keys(data.feed).map(item => {
-                    messages.push(data.feed[item]);
-                });
-                // Populate state messages
-                dispatch(messagesFetchDataSuccess(messages));
-            })
-            .catch(() => dispatch(messagesError(true)));
-    };
+export function messagesSendDataSuccess(messages) {
+    return {
+        type: 'MESSAGES_SEND_DATA_SUCCESS',
+        messages: messages
+    }
 }
 
-/*export function messagesSendData(url, data) {
+export function messagesSendData(messages, input) {
+    messages.push({
+        "user": "User 1",
+        "value": input,
+        "likes": 13
+    });
     return (dispatch) => {
-        //dispatch(messagesLoading(true));
-        fetch(url, {
-            method: 'post',
-            body: JSON.stringify(data)
-        })
-        .then((response) => {
-            if (!response.ok) {
-                throw Error(response.statusText);
-            }
-            //dispatch(messagesLoading(false));
-            return response;
-        })
-        .then((response) => response.json())
-        .then((data) => {
-           console.log("Data was sent: " + data);
-        })
-        .catch(() => dispatch(messagesError(true)));
-    };
-}*/
+        dispatch(messagesSendDataSuccess(messages));
+    }
+}
 

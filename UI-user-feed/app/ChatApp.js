@@ -1,8 +1,8 @@
 import './styles/less/styles.less'
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { messagesFetchData, messageSaveLocalStorage, messagesFetchLocalStorage } from './state/actions/messages.js';
-import {messages} from '../api/endpoints.js';
+import { messagesFetchData, messageSaveLocalStorage, messagesFetchLocalStorage, messagesSendData } from './state/actions/messages.js';
+import {messageEndPont} from '../api/endpoints.js';
 import Message from './components/Message.js'
 import SendMessage from './components/SendMessage.js';
 
@@ -14,38 +14,32 @@ class ChatApp extends Component {
         this.sendLike = this.sendLike.bind(this);
     }
 
-    // Update state messages on submit
-    sendMessage(message){
-        const messages = this.props.messages;
-        messages.push({
-                "user": "User " + Math.floor(Math.random() * 20),
-                "value": message,
-                "likes": Math.floor(Math.random() * 100)
-            }
-        );
+    // Update state messages on submitting new message
+    sendMessage(input, messages) {
+        messages = this.props.messages;
+        this.props.updateMessages(messages, input);
         this.props.updateLocalStorage(messages);
-        this.setState({ messages });
     }
 
     // Update state messages property on submit
     sendLike(like, index) {
         const likes = this.props.messages[index];
         const messages = this.props.messages;
-        console.log(likes);
         messages[index].likes = like;
         this.props.updateLocalStorage(messages);
         this.setState({ likes });
     }
 
-    // Make GET request once app is rendered || Call Local Storage
+    // Make GET request once app is rendered
+    // Call Local Storage after first Get request
     componentDidMount() {
+        const messages = this.props.messages;
         if(localStorage && localStorage.getItem('messages')) {
-            console.log('Local Storage called');
-            const messages = this.props.fetchLocalStorage();
-            this.setState({ messages })
+            console.log(`componentDidMount(${'\u221A'}) ${'\u2192'} localStorage(${'\u221A'})`);
+            this.props.fetchLocalStorage(messages);
         }else {
-            console.log('Fetch called');
-            this.props.fetchMessages(messages);
+            console.log(`componentDidMount(${'\u221A'}) ${'\u2192'} fetch(${'\u221A'})`);
+            this.props.fetchMessages(messageEndPont);
         }
     }
 
@@ -73,9 +67,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchMessages: (url) => dispatch(messagesFetchData(url)),
+        fetchMessages: (endpoint) => dispatch(messagesFetchData(endpoint)),
+        fetchLocalStorage: (messages) => dispatch(messagesFetchLocalStorage(messages)),
         updateLocalStorage: (messages) => dispatch(messageSaveLocalStorage(messages)),
-        fetchLocalStorage: (messages) => dispatch(messagesFetchLocalStorage(messages))
+        updateMessages: (messages, input) => dispatch(messagesSendData(messages, input)),
     };
 };
 
