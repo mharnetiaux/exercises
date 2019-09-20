@@ -1,8 +1,9 @@
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 
 const config = {
+    mode: 'none',
     entry: './src/index.js',
     output: {
         path: __dirname + '/dist',
@@ -10,7 +11,7 @@ const config = {
     },
     module: {
         rules: [{
-                test: /\.(js)$/,
+                test: /\.(js|jsx)$/,
                 include: [
                     path.resolve(__dirname, './src')
                 ],
@@ -20,31 +21,32 @@ const config = {
                 exclude: /node_modules/
             },
             {
-                test: /\.(scss)$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'sass-loader']
-                }),
-                exclude: /node_modules/
-            },
-            {
                 test: /\.(less)$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'less-loader']
-                }),
-                exclude: /node_modules/
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            // you can specify a publicPath here
+                            // by default it uses publicPath in webpackOptions.output
+                            publicPath: '../',
+                            hmr: process.env.NODE_ENV === 'development',
+                        },
+                    },
+                    'css-loader',
+                ],
             },
             {
                 test: /\.(hbs)$/,
                 use: [{ loader: 'handlebars-loader' }],
                 exclude: /node_modules/
-            }
-        ]
+            },
+        ],
     },
     plugins: [
-        new ExtractTextPlugin({
-            filename: 'styles/[name].bundle.css'
+        new MiniCssExtractPlugin({
+            filename: 'styles/[name].bundle.css',
+            chunkFilename: '[id].css',
+            ignoreOrder: false
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './server/views/main.hbs'),
