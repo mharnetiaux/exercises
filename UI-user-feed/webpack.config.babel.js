@@ -1,11 +1,9 @@
-import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import env from './webpack/env.js';
 import path from 'path';
 
 const config = {
-    entry: env.hotModule(),
+    entry: './src/index.js',
     output: {
         path: __dirname + '/dist',
         filename: 'scripts/[name].bundle.js',
@@ -14,7 +12,7 @@ const config = {
         rules: [{
                 test: /\.(js)$/,
                 include: [
-                    path.resolve(__dirname, './app')
+                    path.resolve(__dirname, './src')
                 ],
                 use: [
                     { loader: 'babel-loader' }
@@ -46,19 +44,13 @@ const config = {
     },
     plugins: [
         new ExtractTextPlugin({
-            filename: 'styles/[name].bundle.css',
-            disable: env.embeddedStyles()
+            filename: 'styles/[name].bundle.css'
         }),
         new HtmlWebpackPlugin({
-            tile: 'Home Page Template',
             template: path.resolve(__dirname, './server/views/main.hbs'),
             inject: 'body',
             filename: 'index.html'
-        }),
-        new webpack.HotModuleReplacementPlugin()
-    ],
-    stats: {
-        children: false
-    }
+        })
+    ]
 };
 export default config;
