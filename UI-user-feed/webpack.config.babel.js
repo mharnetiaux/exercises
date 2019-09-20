@@ -1,5 +1,7 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+import OptimizeJSAssetsPlugin from 'babel-minify-webpack-plugin';
 import path from 'path';
 
 const config = {
@@ -9,9 +11,12 @@ const config = {
         path: __dirname + '/dist',
         filename: 'scripts/[name].bundle.js',
     },
+    optimization: {
+        minimizer: [new OptimizeJSAssetsPlugin, new OptimizeCSSAssetsPlugin],
+    },
     module: {
         rules: [{
-                test: /\.(js|jsx)$/,
+                test: /\.(js)$/,
                 include: [
                     path.resolve(__dirname, './src')
                 ],
@@ -26,9 +31,6 @@ const config = {
                     {
                         loader: MiniCssExtractPlugin.loader,
                         options: {
-                            // you can specify a publicPath here
-                            // by default it uses publicPath in webpackOptions.output
-                            publicPath: '../',
                             hmr: process.env.NODE_ENV === 'development',
                         },
                     },
@@ -49,7 +51,7 @@ const config = {
             ignoreOrder: false
         }),
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, './server/views/main.hbs'),
+            template: path.resolve(__dirname, './src/views/main.hbs'),
             inject: 'body',
             filename: 'index.html'
         })
