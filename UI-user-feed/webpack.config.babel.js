@@ -4,7 +4,7 @@ import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import OptimizeJSAssetsPlugin from 'babel-minify-webpack-plugin';
 
 const config = {
-    mode: 'none',
+    mode: 'development',
     entry: './src/index.js',
     output: {
         filename: 'scripts/[name].bundle.js',
@@ -32,11 +32,6 @@ const config = {
                     'css-loader',
                 ],
             },
-            {
-                test: /\.(hbs)$/,
-                use: [{ loader: 'handlebars-loader' }],
-                exclude: /node_modules/
-            },
         ],
     },
     plugins: [
@@ -46,7 +41,7 @@ const config = {
             ignoreOrder: false
         }),
         new HtmlWebpackPlugin({
-            template: './src/views/main.hbs',
+            template: './src/views/main.html',
             inject: 'body',
             filename: 'index.html'
         })
