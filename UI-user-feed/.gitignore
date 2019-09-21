@@ -1,7 +1,4 @@
 dist/*
-webpack/env.js
-env.jsdules/
-package-lock.json
 .idea/
 .gitattributes
 ../.idea/*
