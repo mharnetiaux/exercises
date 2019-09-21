@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 //import { messagesFetchData, messageSaveLocalStorage, messagesFetchLocalStorage, messagesSendData } from '../state/actions/messages';
-import { messageEndPoint } from '../utils/api/messageEndPoint';
+import { messageEndPoint } from '../../utils/api/messageEndPoint';
 import Message from './Message'
 import SendMessage from './SendMessage.js';
 
