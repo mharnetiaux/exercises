@@ -1,4 +1,4 @@
-import { logClientMounted } from '../../../utils/http/initStateSuccess.js';
+import { logClientMounted } from '../../utils/http/initStateSuccess.js';
 
 /*export function messagesFetchDataSuccess(messages) {
     return {
