@@ -7,7 +7,7 @@ const config = {
     mode: 'development',
     entry: './src/index.js',
     output: {
-        filename: 'scripts/[name].bundle.js',
+        filename: 'scripts/[name][hash].bundle.js',
     },
     optimization: {
         minimizer: [new OptimizeJSAssetsPlugin, new OptimizeCSSAssetsPlugin],
@@ -15,9 +15,12 @@ const config = {
     module: {
         rules: [{
                 test: /\.(js)$/,
-                use: [
-                    { loader: 'babel-loader' }
-                ],
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                },
                 exclude: /node_modules/
             },
             {
@@ -36,12 +39,11 @@ const config = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'styles/[name].bundle.css',
-            chunkFilename: '[id].css',
-            ignoreOrder: false
+            filename: 'styles/[name][hash].bundle.css',
+            chunkFilename: '[id][hash].css'
         }),
         new HtmlWebpackPlugin({
-            template: './src/views/main.html',
+            template: './src/views/index.html',
             inject: 'body',
             filename: 'index.html'
         })
