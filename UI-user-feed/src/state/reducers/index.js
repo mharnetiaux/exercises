@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux';
-import { messages } from './messages';
+import { messages, api } from './messages';
 
-export default combineReducers({ messages });
+export default combineReducers({ messages, api });

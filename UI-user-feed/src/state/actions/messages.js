@@ -1,54 +1,45 @@
-import { logClientMounted } from '../../utils/http/initStateSuccess.js';
+import {
+    API_START_FETCH,
+    API_FETCH_DATA_SUCCESS,
+    API_SEND_DATA_SUCCESS,
+    FETCH_LOCAL_STORAGE_SUCCESS,
+    LOCAL_STORAGE_SAVE_SUCCESS
+} from "../actions/types";
 
-export function messagesFetchDataSuccess(messages) {
+
+export function apiFetchDataStart(url) {
     return {
-        type: 'MESSAGES_FETCH_DATA_SUCCESS',
+        type: API_START_FETCH,
+        url: url
+    }
+}
+
+export function apiFetchDataSuccess(messages) {
+    return {
+        type: API_FETCH_DATA_SUCCESS,
         messages: messages
     }
 }
 
-export function messagesFetchData(url) {
-    return (dispatch) => {
-
-        fetch(url)
-        .then((response) => {
-            console.log(`Fetch response: ${ response.status } ${ response.ok } ${ '\u221A' }`);
-            return response.json();
-        })
-        .then((messages) => {
-            messages = messages['feed'];
-            logClientMounted(messages);
-            dispatch(messagesFetchDataSuccess(messages));
-        })
-        .catch((response) => {
-            console.log(`Fetch error: ${ response } ${ '\u221A' }`);
-            throw Error(`${ response }`);
-        });
-    };
-}
-
 export function messageSaveLocalStorage(messages) {
     return {
-        type: 'MESSAGES_LOCAL_STORAGE_SUCCESS',
-        messages: localStorage.setItem('messages', JSON.stringify(messages))
+        type: LOCAL_STORAGE_SAVE_SUCCESS,
+        // messages: localStorage.setItem('messages', JSON.stringify(messages))
+        messages: messages
     }
 }
 
-export function messagesFetchLocalStorage() {
+export function messagesFetchLocalStorage(messages) {
     return {
-        type: 'MESSAGES_FETCH_LOCAL_STORAGE_SUCCESS',
-        messages: JSON.parse(localStorage.getItem('messages'))
+        type: FETCH_LOCAL_STORAGE_SUCCESS,
+        // messages: JSON.parse(localStorage.getItem('messages'))
+        messages: messages
     }
 }
 
-export function messagesSendData(messages, input) {
-    messages.push({
-        "user": "User 1",
-        "value": input,
-        "likes": 13
-    });
+export function messagesSendData(messages) {
     return {
-        type: 'MESSAGES_SEND_DATA_SUCCESS',
+        type: API_SEND_DATA_SUCCESS,
         messages: messages
     }
 }
