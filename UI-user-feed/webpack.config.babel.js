@@ -15,12 +15,9 @@ const config = {
     module: {
         rules: [{
                 test: /\.(js)$/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env']
-                    }
-                },
+                use: [
+                    { loader: 'babel-loader' }
+                ],
                 exclude: /node_modules/
             },
             {
@@ -33,6 +30,7 @@ const config = {
                         },
                     },
                     'css-loader',
+                    'less-loader',
                 ],
             },
         ],
@@ -40,7 +38,8 @@ const config = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: 'styles/[name][hash].bundle.css',
-            chunkFilename: '[id][hash].css'
+            chunkFilename: '[id][hash].css',
+            ignoreOrder: false
         }),
         new HtmlWebpackPlugin({
             template: './src/views/index.html',

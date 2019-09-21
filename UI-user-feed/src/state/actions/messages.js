@@ -1,13 +1,13 @@
 import { logClientMounted } from '../../utils/http/initStateSuccess.js';
 
-/*export function messagesFetchDataSuccess(messages) {
+export function messagesFetchDataSuccess(messages) {
     return {
         type: 'MESSAGES_FETCH_DATA_SUCCESS',
         messages: messages
     }
-}*/
+}
 
-/*export function messagesFetchData(url) {
+export function messagesFetchData(url) {
     return (dispatch) => {
 
         fetch(url)
@@ -25,9 +25,9 @@ import { logClientMounted } from '../../utils/http/initStateSuccess.js';
             throw Error(`${ response }`);
         });
     };
-}*/
+}
 
-/*export function messageSaveLocalStorage(messages) {
+export function messageSaveLocalStorage(messages) {
     return {
         type: 'MESSAGES_LOCAL_STORAGE_SUCCESS',
         messages: localStorage.setItem('messages', JSON.stringify(messages))
@@ -51,5 +51,5 @@ export function messagesSendData(messages, input) {
         type: 'MESSAGES_SEND_DATA_SUCCESS',
         messages: messages
     }
-}*/
+}
 
