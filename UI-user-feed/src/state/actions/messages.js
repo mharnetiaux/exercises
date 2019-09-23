@@ -7,7 +7,7 @@ import {
 } from "../actions/types";
 
 
-export function apiFetchDataStart(url) {
+export function apiEndPoint(url) {
     return {
         type: API_START_FETCH,
         url: url

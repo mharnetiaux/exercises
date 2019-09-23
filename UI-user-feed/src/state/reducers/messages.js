@@ -25,7 +25,7 @@ export function messages(state = [], action) {
     }
 }
 
-export function api(state = '', action) {
+export function apiEndPoint(state = '', action) {
     switch (action.type) {
         case API_START_FETCH:
             return action.url;

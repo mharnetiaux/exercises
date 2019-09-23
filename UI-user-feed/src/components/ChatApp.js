@@ -2,7 +2,7 @@ import '../styles/less/styles.less'
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { apiFetchDataStart, messageSaveLocalStorage, messagesFetchLocalStorage, messagesSendData } from '../state/actions/messages';
+import { apiEndPoint, messageSaveLocalStorage, messagesFetchLocalStorage, messagesSendData } from '../state/actions/messages';
 import { messageEndPoint } from '../utils/api/messageEndPoint';
 import Message from './Message'
 import SendMessage from './SendMessage.js';
@@ -70,7 +70,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchMessages: (url) => dispatch(apiFetchDataStart(url)),
+        fetchMessages: (url) => dispatch(apiEndPoint(url)),
         fetchLocalStorage: (messages) => dispatch(messagesFetchLocalStorage(messages)),
         updateLocalStorage: (messages) => dispatch(messageSaveLocalStorage(messages)),
         updateMessages: (messages, input) => dispatch(messagesSendData(messages, input))
