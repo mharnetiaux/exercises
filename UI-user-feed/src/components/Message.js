@@ -3,6 +3,7 @@ import LikeButton from '../components/LikeButton.js';
 
 const Message = (props) => {
     const chatContent = Object.keys(props.messages).map((item) => props.messages[item]);
+
     return(
         <span>
             {chatContent.map((content, id) =>

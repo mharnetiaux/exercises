@@ -5,7 +5,7 @@ import store from './state/store/store';
 import ChatApp from './components/ChatApp';
 
 render(
-    <Provider store={store}>
+    <Provider store={ store }>
         <ChatApp />
     </Provider>,
     document.getElementById('app'));

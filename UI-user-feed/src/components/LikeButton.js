@@ -14,6 +14,7 @@ class LikeButton extends Component {
         this.setState({likes: this.state.likes += 1});
         this.props.sendLike(this.state.likes, this.state.index);
     }
+
     render() {
         return(
             <button onClick={this.handleLike}>{this.state.likes}</button>

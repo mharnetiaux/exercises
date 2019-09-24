@@ -2,10 +2,14 @@ import '../styles/less/styles.less'
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { apiEndPoint, messageSaveLocalStorage, messagesFetchLocalStorage, messagesSendData } from '../state/actions/messages';
 import { messageEndPoint } from '../utils/api/messageEndPoint';
 import Message from './Message'
 import SendMessage from './SendMessage.js';
+import {
+    apiFetchData,
+    messageSaveLocalStorage,
+    messagesFetchLocalStorage,
+    messagesSendData } from '../state/actions/messages';
 
 class ChatApp extends Component {
     constructor(props) {
@@ -17,14 +21,14 @@ class ChatApp extends Component {
     sendMessage(input, messages) {
         messages = this.props.messages;
         this.props.updateMessages(messages, input);
-        this.props.updateLocalStorage(messages);
+        // this.props.updateLocalStorage(messages);
     }
     // Update state messages property on submit
     sendLike(like, index) {
         const likes = this.props.messages[index];
         const messages = this.props.messages;
         messages[index].likes = like;
-        this.props.updateLocalStorage(messages);
+        // this.props.updateLocalStorage(messages);
         this.setState({ likes });
     }
     // Make GET request once src is rendered
@@ -32,13 +36,14 @@ class ChatApp extends Component {
     componentDidMount() {
         const messages = this.props.messages;
         if(localStorage && localStorage.getItem('messages')) {
-            console.log(`React componentDidMount ${'\u221A'}  ${'\u2192'}  Local storage called ${'\u221A'}`);
+            console.log(`React: componentDidMount. ${'\u221A'}  ${'\u2192'}  Local storage called. ${'\u221A'}`);
             this.props.fetchLocalStorage(messages);
         }else {
-            console.log(`React componentDidMount ${'\u221A'}  ${'\u2192'}  Fetch called ${'\u221A'}`);
+            console.log(`React: componentDidMount. ${'\u221A'}  ${'\u2192'}  Http Get called. ${'\u221A'}`);
             this.props.fetchMessages(messageEndPoint);
         }
     }
+
     render() {
         const { messages } = this.props;
         const messageCount = messages.length;
@@ -68,9 +73,10 @@ const mapStateToProps = (state) => {
     const { messages } = state;
     return { messages };
 };
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchMessages: (url) => dispatch(apiEndPoint(url)),
+        fetchMessages: (url) => dispatch(apiFetchData(url)),
         fetchLocalStorage: (messages) => dispatch(messagesFetchLocalStorage(messages)),
         updateLocalStorage: (messages) => dispatch(messageSaveLocalStorage(messages)),
         updateMessages: (messages, input) => dispatch(messagesSendData(messages, input))
