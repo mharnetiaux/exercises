@@ -4,7 +4,7 @@ import {
     API_SEND_DATA_SUCCESS,
     FETCH_LOCAL_STORAGE_SUCCESS,
     LOCAL_STORAGE_SAVE_SUCCESS
-} from "../actions/types";
+} from "../../actions/types";
 
 const initialState = {
     messages: [],

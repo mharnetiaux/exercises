@@ -1,10 +1,13 @@
 import getMessagesMiddleware from '../middleware/getMessages';
+import updateMessagesMiddleware from '../middleware/updateMessages';
 import { createStore, applyMiddleware } from 'redux';
-import rootReducer from '../reducers/';
+import messagesReducer from '../reducers/messages/index';
 
-const store = createStore(rootReducer, applyMiddleware(getMessagesMiddleware));
+const store = createStore(
+    messagesReducer,
+    applyMiddleware(getMessagesMiddleware,
+        updateMessagesMiddleware));
 
-console.log('Store initialized.');
-console.log(store.getState());
+console.log(`Redux: store initialized. ${'\u221A'}`);
 
 export default store;

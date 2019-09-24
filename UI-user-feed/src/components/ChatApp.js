@@ -2,7 +2,7 @@ import '../styles/less/styles.less'
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { messageEndPoint } from '../utils/api/messageEndPoint';
+import { messagesEndPoint } from '../utils/api/messageEndPoint';
 import Message from './Message'
 import SendMessage from './SendMessage.js';
 import {
@@ -17,10 +17,10 @@ class ChatApp extends Component {
         this.sendMessage = this.sendMessage.bind(this);
         this.sendLike = this.sendLike.bind(this);
     }
-    // Update state messages on submitting new message
+
     sendMessage(input, messages) {
         messages = this.props.messages;
-        this.props.updateMessages(messages, input);
+        this.props.updateMessages(messages, input); // Update state messages on submitting new message
         // this.props.updateLocalStorage(messages);
     }
     // Update state messages property on submit
@@ -31,16 +31,15 @@ class ChatApp extends Component {
         // this.props.updateLocalStorage(messages);
         this.setState({ likes });
     }
-    // Make GET request once src is rendered
-    // Call Local Storage after first Get request
+
     componentDidMount() {
         const messages = this.props.messages;
         if(localStorage && localStorage.getItem('messages')) {
             console.log(`React: componentDidMount. ${'\u221A'}  ${'\u2192'}  Local storage called. ${'\u221A'}`);
-            this.props.fetchLocalStorage(messages);
+            this.props.fetchLocalStorage(messages); // Call Local Storage after first Get request
         }else {
-            console.log(`React: componentDidMount. ${'\u221A'}  ${'\u2192'}  Http Get called. ${'\u221A'}`);
-            this.props.fetchMessages(messageEndPoint);
+            console.log(`React: componentDidMount. ${'\u221A'}  ${'\u2192'}  Http call. ${'\u221A'}`);
+            this.props.fetchMessages(messagesEndPoint); // Make GET request once ChatApp is rendered
         }
     }
 
