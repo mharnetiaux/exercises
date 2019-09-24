@@ -4,7 +4,7 @@ import { apiFetchDataSuccess } from "../actions/messages";
 const getMessagesMiddleware = store => next => action => {
     next(action);
     if (action.type !== API_START_FETCH) return;
-    console.log('Redux middleware: API_START_FETCH called.');
+    console.log(`Redux middleware: API_START_FETCH called. ${ '\u221A' }`);
 
     fetch(action.url)
         .then((response) => {

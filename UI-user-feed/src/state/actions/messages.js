@@ -8,7 +8,7 @@ import {
 } from "../actions/types";
 
 export function apiFetchData(url) {
-    console.log('Redux action: API_START_FETCH called.');
+    console.log(`Redux action: API_START_FETCH called. ${'\u221A'}`);
     return {
         type: API_START_FETCH,
         url: url
@@ -16,7 +16,7 @@ export function apiFetchData(url) {
 }
 
 export function apiFetchDataSuccess(messages) {
-    console.log('Redux action: API_FETCH_DATA_SUCCESS called.');
+    console.log(`Redux action: API_FETCH_DATA_SUCCESS called. ${'\u221A'}`);
     return {
         type: API_FETCH_DATA_SUCCESS,
         messages: messages
@@ -40,7 +40,7 @@ export function messagesFetchLocalStorage(messages) {
 }
 
 export function messagesSendData(messages, input) {
-    console.log('Redux action: API_SEND_DATA_SUCCESS called.');
+    console.log(`Redux action: API_SEND_DATA_SUCCESS called. ${'\u221A'}`);
     return {
         type: API_SEND_DATA_SUCCESS,
         messages: messages,
@@ -49,7 +49,7 @@ export function messagesSendData(messages, input) {
 }
 
 export function messagesUpdateData(messages) {
-    console.log('Redux action: API_UPDATE_DATA_SUCCESS called.');
+    console.log(`Redux action: API_UPDATE_DATA_SUCCESS called. ${'\u221A'}`);
     return {
         type: API_UPDATE_DATA_SUCCESS,
         messages: messages

@@ -29,7 +29,6 @@ class ChatApp extends Component {
         const messages = this.props.messages;
         messages[index].likes = like;
         // this.props.updateLocalStorage(messages);
-        this.setState({ likes });
     }
 
     componentDidMount() {
@@ -38,7 +37,7 @@ class ChatApp extends Component {
             console.log(`React: componentDidMount. ${'\u221A'}  ${'\u2192'}  Local storage called. ${'\u221A'}`);
             this.props.fetchLocalStorage(messages); // Call Local Storage after first Get request
         }else {
-            console.log(`React: componentDidMount. ${'\u221A'}  ${'\u2192'}  Http call. ${'\u221A'}`);
+            console.log(`React: componentDidMount. ${'\u221A'}  ${'\u2192'}  Http Get request. ${'\u221A'}`);
             this.props.fetchMessages(messagesEndPoint); // Make GET request once ChatApp is rendered
         }
     }
