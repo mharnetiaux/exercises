@@ -14,19 +14,19 @@ const initialState = {
 export function messages(store = initialState.messages, action) {
     switch (action.type) {
         case API_FETCH_DATA_SUCCESS:
-            console.log(`Redux reducer ${'\u2192'} API_FETCH_DATA_SUCCESS called. ${'\u221A'}`);
+            console.log(`reducer ${'\u2192'} API_FETCH_DATA_SUCCESS ${'\u221A'}`);
             return action.messages;
 
         case API_SEND_DATA_SUCCESS:
-            console.log(`Redux reducer ${'\u2192'} API_SEND_DATA_SUCCESS called. ${'\u221A'}`);
+            console.log(`reducer ${'\u2192'} API_SEND_DATA_SUCCESS ${'\u221A'}`);
             return action.messages;
 
         case FETCH_LOCAL_STORAGE_SUCCESS:
-            console.log(`Redux reducer ${'\u2192'} FETCH_LOCAL_STORAGE_SUCCESS called. ${'\u221A'}`);
+            console.log(`reducer ${'\u2192'} FETCH_LOCAL_STORAGE_SUCCESS ${'\u221A'}`);
             return action.messages;
 
         case LOCAL_STORAGE_SAVE_SUCCESS:
-            console.log(`Redux reducer ${'\u2192'} LOCAL_STORAGE_SAVE_SUCCESS called. ${'\u221A'}`);
+            console.log(`reducer ${'\u2192'} LOCAL_STORAGE_SAVE_SUCCESS ${'\u221A'}`);
             return action.messages;
 
         default:
@@ -37,7 +37,7 @@ export function messages(store = initialState.messages, action) {
 export function url(store = initialState.url, action) {
     switch (action.type) {
         case API_START_FETCH:
-            console.log(`Redux reducer ${'\u2192'} API_START_FETCH called. ${'\u221A'}`);
+            console.log(`reducer ${'\u2192'} API_START_FETCH ${'\u221A'}`);
             return action.url;
 
         default:

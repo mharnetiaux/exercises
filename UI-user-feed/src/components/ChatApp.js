@@ -34,10 +34,10 @@ class ChatApp extends Component {
     componentDidMount() {
         const messages = this.props.messages;
         if(localStorage && localStorage.getItem('messages')) {
-            console.log(`ReactRender ${'\u2192'} componentDidMount. ${'\u221A'}  ${'\u2192'}  Local storage called. ${'\u221A'}`);
+            console.log(`react render ${'\u221A'}  ${'\u2192'} componentDidMount ${'\u221A'}  ${'\u2192'}`);
             this.props.fetchLocalStorage(messages); // Call Local Storage after first Get request
         }else {
-            console.log(`ReactRender ${'\u2192'} componentDidMount. ${'\u221A'}  ${'\u2192'}  Http Get request. ${'\u221A'}`);
+            console.log(`react render ${'\u221A'} ${'\u2192'} componentDidMount ${'\u221A'}`);
             this.props.fetchMessages(messagesEndPoint); // Make GET request once ChatApp is rendered
         }
     }
