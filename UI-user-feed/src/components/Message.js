@@ -7,7 +7,7 @@ const Message = (props) => {
     return(
         <span>
             {chatContent.map((content, id) =>
-                <ul key={id} className="message">
+                <ul key={ id } className="message">
                     <li className="user">{ content.user }</li>
                     <li className="message">{ content.value }</li>
                     <li><LikeButton likes={ content.likes } sendLike={ props.sendLike } index={ id } /></li>

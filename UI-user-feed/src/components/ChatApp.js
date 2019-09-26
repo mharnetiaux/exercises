@@ -6,7 +6,7 @@ import { messagesEndPoint } from '../utils/api/messageEndPoint';
 import Message from './Message'
 import SendMessage from './SendMessage.js';
 import {
-    apiFetchData,
+    apiGetDataStart,
     messageSaveLocalStorage,
     messagesFetchLocalStorage,
     messagesSendData } from '../state/actions/messages';
@@ -34,11 +34,11 @@ class ChatApp extends Component {
     componentDidMount() {
         const messages = this.props.messages;
         if(localStorage && localStorage.getItem('messages')) {
-            console.log(`react render ${'\u221A'}  ${'\u2192'} componentDidMount ${'\u221A'}  ${'\u2192'}`);
+            console.log(`react render ${ '\u221A' }  ${ '\u2192' } componentDidMount ${ '\u221A' }  ${ '\u2192' }`);
             this.props.fetchLocalStorage(messages); // Call Local Storage after first Get request
         }else {
-            console.log(`react render ${'\u221A'} ${'\u2192'} componentDidMount ${'\u221A'}`);
-            this.props.fetchMessages(messagesEndPoint); // Make GET request once ChatApp is rendered
+            console.log(`react render ${ '\u221A' } ${ '\u2192' } componentDidMount ${ '\u221A' }`);
+            this.props.getMessages(messagesEndPoint); // Make GET request once ChatApp is rendered
         }
     }
 
@@ -61,7 +61,7 @@ class ChatApp extends Component {
 
 ChatApp.propTypes = {
     messages: PropTypes.array.isRequired,
-    fetchMessages:  PropTypes.func.isRequired,
+    getMessages:  PropTypes.func.isRequired,
     fetchLocalStorage:  PropTypes.func.isRequired,
     updateLocalStorage: PropTypes.func.isRequired,
     updateMessages: PropTypes.func.isRequired
@@ -74,7 +74,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchMessages: (url) => dispatch(apiFetchData(url)),
+        getMessages: (url) => dispatch(apiGetDataStart(url)),
         fetchLocalStorage: (messages) => dispatch(messagesFetchLocalStorage(messages)),
         updateLocalStorage: (messages) => dispatch(messageSaveLocalStorage(messages)),
         updateMessages: (messages, input) => dispatch(messagesSendData(messages, input))

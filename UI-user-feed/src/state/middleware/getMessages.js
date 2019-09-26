@@ -1,9 +1,9 @@
-import { API_START_FETCH } from "../actions/types";
-import { apiFetchDataSuccess } from "../actions/messages";
+import { API_GET_DATA_START } from "../actions/types";
+import { apiGetDataSuccess } from "../actions/messages";
 
 const getMessagesMiddleware = store => next => action => {
     next(action);
-    if (action.type !== API_START_FETCH) return;
+    if (action.type !== API_GET_DATA_START) return;
     console.log(`middleware ${'\u2192'} API_START_FETCH ${ '\u221A' }`);
 
     fetch(action.url)
@@ -13,7 +13,7 @@ const getMessagesMiddleware = store => next => action => {
         })
         .then((messages) => {
             messages = messages['feed'];
-            store.dispatch(apiFetchDataSuccess(messages));
+            store.dispatch(apiGetDataSuccess(messages));
         })
         .catch((response) => {
             console.log(`HTTP ERROR ${'\u2192'} ${ response } ${ '\u221A' }`);

@@ -25,7 +25,7 @@ class SendMessage extends Component {
             <form onSubmit={ e => this.onSubmit(e) }>
                 <input
                     onChange={ e => this.onChange(e) }
-                    value={this.state.input}
+                    value={ this.state.input }
                     type="text"
                     placeholder="Enter message"
                     autoFocus={ true }

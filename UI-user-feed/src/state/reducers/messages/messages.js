@@ -1,6 +1,6 @@
 import {
-    API_START_FETCH,
-    API_FETCH_DATA_SUCCESS,
+    API_GET_DATA_START,
+    API_GET_DATA_SUCCESS,
     MESSAGES_SEND_DATA_SUCCESS,
     MESSAGES_UPDATE_DATA_SUCCESS,
     FETCH_LOCAL_STORAGE_SUCCESS,
@@ -14,13 +14,12 @@ const initialState = {
 
 export function messages(store = initialState.messages, action) {
     switch (action.type) {
-        case API_FETCH_DATA_SUCCESS:
-            console.log(`reducer ${'\u2192'} API_FETCH_DATA_SUCCESS ${'\u221A'}`);
+        case API_GET_DATA_SUCCESS:
+            console.log(`reducer ${'\u2192'} API_GET_DATA_SUCCESS ${'\u221A'}`);
             return action.messages;
 
         case MESSAGES_SEND_DATA_SUCCESS:
             console.log(`reducer ${'\u2192'} MESSAGES_SEND_DATA_SUCCESS ${'\u221A'}`);
-            console.log(action.input);
             return action.messages;
 
         case MESSAGES_UPDATE_DATA_SUCCESS:
@@ -42,8 +41,8 @@ export function messages(store = initialState.messages, action) {
 
 export function url(store = initialState.url, action) {
     switch (action.type) {
-        case API_START_FETCH:
-            console.log(`reducer ${'\u2192'} API_START_FETCH ${'\u221A'}`);
+        case API_GET_DATA_START:
+            console.log(`reducer ${'\u2192'} API_GET_DATA_START ${'\u221A'}`);
             return action.url;
 
         default:

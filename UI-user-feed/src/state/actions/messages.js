@@ -1,30 +1,30 @@
 import {
-    API_START_FETCH,
-    API_FETCH_DATA_SUCCESS,
+    API_GET_DATA_START,
+    API_GET_DATA_SUCCESS,
     MESSAGES_UPDATE_DATA_SUCCESS,
     MESSAGES_SEND_DATA_SUCCESS,
     FETCH_LOCAL_STORAGE_SUCCESS,
     LOCAL_STORAGE_SAVE_SUCCESS
 } from "../actions/types";
 
-export function apiFetchData(url) {
-    console.log(`action ${'\u2192'} API_START_FETCH ${'\u221A'}`);
+export function apiGetDataStart(url) {
+    console.log(`action ${ '\u2192' } API_GET_DATA_START ${ '\u221A' }`);
     return {
-        type: API_START_FETCH,
+        type: API_GET_DATA_START,
         url: url
     }
 }
 
-export function apiFetchDataSuccess(messages) {
-    console.log(`action ${'\u2192'} API_FETCH_DATA_SUCCESS ${'\u221A'}`);
+export function apiGetDataSuccess(messages) {
+    console.log(`action ${ '\u2192' } API_GET_DATA_SUCCESS ${ '\u221A' }`);
     return {
-        type: API_FETCH_DATA_SUCCESS,
+        type: API_GET_DATA_SUCCESS,
         messages: messages
     }
 }
 
 export function messagesSendData(messages, input) {
-    console.log(`action ${'\u2192'} MESSAGES_SEND_DATA_SUCCESS ${'\u221A'}`);
+    console.log(`action ${ '\u2192' } MESSAGES_SEND_DATA_SUCCESS ${ '\u221A' }`);
     return {
         type: MESSAGES_SEND_DATA_SUCCESS,
         messages: messages,
@@ -33,10 +33,11 @@ export function messagesSendData(messages, input) {
 }
 
 export function messagesUpdateDataSuccess(messages) {
-    console.log(`action ${'\u2192'} MESSAGES_UPDATE_DATA_SUCCESS ${'\u221A'}`);
+    console.log(`action ${ '\u2192' } MESSAGES_UPDATE_DATA_SUCCESS ${ '\u221A' }`);
     return {
         type: MESSAGES_UPDATE_DATA_SUCCESS,
-        messages: messages
+        messages: messages,
+        input: input
     }
 }
 
