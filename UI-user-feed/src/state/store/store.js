@@ -5,8 +5,10 @@ import messagesReducer from '../reducers/messages/index';
 
 const store = createStore(
     messagesReducer,
-    applyMiddleware(getMessagesMiddleware,
-        updateMessagesMiddleware));
+    applyMiddleware(
+        getMessagesMiddleware,
+        updateMessagesMiddleware)
+    );
 
 console.log(`store initialized ${'\u221A'}`);
 

@@ -37,7 +37,6 @@ export function messagesUpdateDataSuccess(messages) {
     return {
         type: MESSAGES_UPDATE_DATA_SUCCESS,
         messages: messages,
-        input: input
     }
 }
 

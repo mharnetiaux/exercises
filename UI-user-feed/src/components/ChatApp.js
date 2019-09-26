@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { messagesEndPoint } from '../utils/api/messageEndPoint';
-import Message from './Message'
 import SendMessage from './SendMessage.js';
+import Message from './Message'
 import {
     apiGetDataStart,
     messageSaveLocalStorage,
@@ -23,7 +23,7 @@ class ChatApp extends Component {
         this.props.updateMessages(messages, input); // Update state messages on submitting new message
         // this.props.updateLocalStorage(messages);
     }
-    // Update state messages property on submit
+
     sendLike(like, index) {
         const likes = this.props.messages[index];
         const messages = this.props.messages;
