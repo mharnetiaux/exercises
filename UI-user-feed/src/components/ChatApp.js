@@ -7,9 +7,9 @@ import SendMessage from './SendMessage.js';
 import Message from './Message'
 import {
     apiGetDataStart,
-    messageSaveLocalStorage,
-    messagesFetchLocalStorage,
-    messagesSendData } from '../state/actions/messages';
+    // messageSaveLocalStorage,
+    // getLocalStorage,
+    messagesSendStore } from '../state/actions/messages';
 
 class ChatApp extends Component {
     constructor(props) {
@@ -35,7 +35,7 @@ class ChatApp extends Component {
         const messages = this.props.messages;
         if(localStorage && localStorage.getItem('messages')) {
             console.log(`react render ${ '\u221A' }  ${ '\u2192' } componentDidMount ${ '\u221A' }  ${ '\u2192' }`);
-            this.props.fetchLocalStorage(messages); // Call Local Storage after first Get request
+            // this.props.getLocalStorage(messages); // Call Local Storage after first Get request
         }else {
             console.log(`react render ${ '\u221A' } ${ '\u2192' } componentDidMount ${ '\u221A' }`);
             this.props.getMessages(messagesEndPoint); // Make GET request once ChatApp is rendered
@@ -62,23 +62,22 @@ class ChatApp extends Component {
 ChatApp.propTypes = {
     messages: PropTypes.array.isRequired,
     getMessages:  PropTypes.func.isRequired,
-    fetchLocalStorage:  PropTypes.func.isRequired,
-    updateLocalStorage: PropTypes.func.isRequired,
+    // getLocalStorage:  PropTypes.func.isRequired,
+    // updateLocalStorage: PropTypes.func.isRequired,
     updateMessages: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => {
-    const { messages } = state;
-    return { messages };
+const mapStoreToProps = (store) => {
+    return store;
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getMessages: (url) => dispatch(apiGetDataStart(url)),
-        fetchLocalStorage: (messages) => dispatch(messagesFetchLocalStorage(messages)),
-        updateLocalStorage: (messages) => dispatch(messageSaveLocalStorage(messages)),
-        updateMessages: (messages, input) => dispatch(messagesSendData(messages, input))
+        updateMessages: (messages, input) => dispatch(messagesSendStore(messages, input)),
+        // getLocalStorage: (messages) => dispatch(getLocalStorage(messages)),
+        //updateLocalStorage: (messages) => dispatch(messageSaveLocalStorage(messages)),
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChatApp);
+export default connect(mapStoreToProps, mapDispatchToProps)(ChatApp);

@@ -1,10 +1,10 @@
-import { MESSAGES_SEND_DATA_SUCCESS } from "../actions/types";
-import { messagesUpdateDataSuccess } from "../actions/messages";
+import { MESSAGES_SEND_STORE_SUCCESS } from "../actions/types";
+import { messagesUpdateStoreSuccess } from "../actions/messages";
 
 const updateMessagesMiddleware = store => next => action => {
     next(action);
 
-    if (action.type !== MESSAGES_SEND_DATA_SUCCESS) return;
+    if (action.type !== MESSAGES_SEND_STORE_SUCCESS) return;
     const newMessage = { 'value': action.input } || 'SEND FAILURE';
     const newMessageObj = [];
 
@@ -13,6 +13,6 @@ const updateMessagesMiddleware = store => next => action => {
     });
     newMessageObj.push(newMessage);
 
-    store.dispatch(messagesUpdateDataSuccess(newMessageObj));
+    store.dispatch(messagesUpdateStoreSuccess(newMessageObj));
 };
 export default updateMessagesMiddleware;

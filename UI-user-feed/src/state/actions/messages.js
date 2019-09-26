@@ -1,9 +1,9 @@
 import {
     API_GET_DATA_START,
     API_GET_DATA_SUCCESS,
-    MESSAGES_UPDATE_DATA_SUCCESS,
-    MESSAGES_SEND_DATA_SUCCESS,
-    FETCH_LOCAL_STORAGE_SUCCESS,
+    MESSAGES_UPDATE_STORE_SUCCESS,
+    MESSAGES_SEND_STORE_SUCCESS,
+    GET_LOCAL_STORAGE_SUCCESS,
     LOCAL_STORAGE_SAVE_SUCCESS
 } from "../actions/types";
 
@@ -23,24 +23,24 @@ export function apiGetDataSuccess(messages) {
     }
 }
 
-export function messagesSendData(messages, input) {
-    console.log(`action ${ '\u2192' } MESSAGES_SEND_DATA_SUCCESS ${ '\u221A' }`);
+export function messagesSendStore(messages, input) {
+    console.log(`action ${ '\u2192' } MESSAGES_SEND_STORE_SUCCESS ${ '\u221A' }`);
     return {
-        type: MESSAGES_SEND_DATA_SUCCESS,
+        type: MESSAGES_SEND_STORE_SUCCESS,
         messages: messages,
         input: input
     }
 }
 
-export function messagesUpdateDataSuccess(messages) {
-    console.log(`action ${ '\u2192' } MESSAGES_UPDATE_DATA_SUCCESS ${ '\u221A' }`);
+export function messagesUpdateStoreSuccess(messages) {
+    console.log(`action ${ '\u2192' } MESSAGES_UPDATE_STORE_SUCCESS ${ '\u221A' }`);
     return {
-        type: MESSAGES_UPDATE_DATA_SUCCESS,
+        type: MESSAGES_UPDATE_STORE_SUCCESS,
         messages: messages,
     }
 }
 
-export function messageSaveLocalStorage(messages) {
+/*export function messageSaveLocalStorage(messages) {
     return {
         type: LOCAL_STORAGE_SAVE_SUCCESS,
         // messages: localStorage.setItem('messages', JSON.stringify(messages))
@@ -48,10 +48,10 @@ export function messageSaveLocalStorage(messages) {
     }
 }
 
-export function messagesFetchLocalStorage(messages) {
+export function getLocalStorageSuccess(messages) {
     return {
-        type: FETCH_LOCAL_STORAGE_SUCCESS,
+        type: GET_LOCAL_STORAGE_SUCCESS,
         // messages: JSON.parse(localStorage.getItem('messages'))
         messages: messages
     }
-}
+}*/
