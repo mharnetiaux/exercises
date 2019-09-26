@@ -5,14 +5,13 @@ const updateMessagesMiddleware = store => next => action => {
     next(action);
 
     if (action.type !== MESSAGES_SEND_DATA_SUCCESS) return;
+    const newMessage = { 'value': action.input } || '';
     const newMessageObj = [];
 
     action.messages.map((messages) => {
-        const newMessage = { 'value': action.input };
-
         newMessageObj.push(messages);
-        newMessageObj.push(newMessage);
     });
+    newMessageObj.push(newMessage);
 
     store.dispatch(messagesUpdateDataSuccess(newMessageObj));
 };
