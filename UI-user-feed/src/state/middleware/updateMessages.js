@@ -1,8 +1,9 @@
-import { API_UPDATE_DATA_SUCCESS } from "../actions/types";
+import { MESSAGES_SEND_DATA_SUCCESS } from "../actions/types";
+import { messagesSendData } from '../actions/messages'
 
 const updateMessagesMiddleware = store => next => action => {
     next(action);
-    if (action.type !== API_UPDATE_DATA_SUCCESS) return;
-    store.dispatch(console.log('Redux Middleware: API_UPDATE_DATA_SUCCESS called.'));
+    if (action.type !== MESSAGES_SEND_DATA_SUCCESS) return;
+    console.log(store.getState());
 };
 export default updateMessagesMiddleware;

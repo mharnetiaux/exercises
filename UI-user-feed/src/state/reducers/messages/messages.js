@@ -1,7 +1,8 @@
 import {
     API_START_FETCH,
     API_FETCH_DATA_SUCCESS,
-    API_SEND_DATA_SUCCESS,
+    MESSAGES_SEND_DATA_SUCCESS,
+    MESSAGES_UPDATE_DATA_SUCCESS,
     FETCH_LOCAL_STORAGE_SUCCESS,
     LOCAL_STORAGE_SAVE_SUCCESS
 } from "../../actions/types";
@@ -17,8 +18,13 @@ export function messages(store = initialState.messages, action) {
             console.log(`reducer ${'\u2192'} API_FETCH_DATA_SUCCESS ${'\u221A'}`);
             return action.messages;
 
-        case API_SEND_DATA_SUCCESS:
-            console.log(`reducer ${'\u2192'} API_SEND_DATA_SUCCESS ${'\u221A'}`);
+        case MESSAGES_SEND_DATA_SUCCESS:
+            console.log(`reducer ${'\u2192'} MESSAGES_SEND_DATA_SUCCESS ${'\u221A'}`);
+            console.log(action.input);
+            return action.messages;
+
+        case MESSAGES_UPDATE_DATA_SUCCESS:
+            console.log(`reducer ${'\u2192'} API_UPDATE_DATA_SUCCESS ${'\u221A'}`);
             return action.messages;
 
         case FETCH_LOCAL_STORAGE_SUCCESS:
