@@ -5,7 +5,7 @@ const updateMessagesMiddleware = store => next => action => {
     next(action);
 
     if (action.type !== MESSAGES_SEND_DATA_SUCCESS) return;
-    const newMessage = { 'value': action.input } || '';
+    const newMessage = { 'value': action.input } || 'SEND FAILURE';
     const newMessageObj = [];
 
     action.messages.map((messages) => {
