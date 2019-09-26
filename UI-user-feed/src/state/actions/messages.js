@@ -8,7 +8,7 @@ import {
 } from "../actions/types";
 
 export function apiGetDataStart(url) {
-    console.log(`action ${ '\u2192' } API_GET_DATA_START ${ '\u221A' }`);
+    console.log(`Redux action ${ '\u2192' } API_GET_DATA_START ${ '\u221A' }`);
     return {
         type: API_GET_DATA_START,
         url: url
@@ -16,7 +16,7 @@ export function apiGetDataStart(url) {
 }
 
 export function apiGetDataSuccess(messages) {
-    console.log(`action ${ '\u2192' } API_GET_DATA_SUCCESS ${ '\u221A' }`);
+    console.log(`Redux action ${ '\u2192' } API_GET_DATA_SUCCESS ${ '\u221A' }`);
     return {
         type: API_GET_DATA_SUCCESS,
         messages: messages
@@ -24,7 +24,7 @@ export function apiGetDataSuccess(messages) {
 }
 
 export function messagesSendStore(messages, input) {
-    console.log(`action ${ '\u2192' } MESSAGES_SEND_STORE_SUCCESS ${ '\u221A' }`);
+    console.log(`Redux action ${ '\u2192' } MESSAGES_SEND_STORE_SUCCESS ${ '\u221A' }`);
     return {
         type: MESSAGES_SEND_STORE_SUCCESS,
         messages: messages,
@@ -33,25 +33,25 @@ export function messagesSendStore(messages, input) {
 }
 
 export function messagesUpdateStoreSuccess(messages) {
-    console.log(`action ${ '\u2192' } MESSAGES_UPDATE_STORE_SUCCESS ${ '\u221A' }`);
+    console.log(`Redux action ${ '\u2192' } MESSAGES_UPDATE_STORE_SUCCESS ${ '\u221A' }`);
     return {
         type: MESSAGES_UPDATE_STORE_SUCCESS,
         messages: messages,
     }
 }
 
-/*export function messageSaveLocalStorage(messages) {
+/*export function messageSaveLocalStorage(getMessages) {
     return {
         type: LOCAL_STORAGE_SAVE_SUCCESS,
-        // messages: localStorage.setItem('messages', JSON.stringify(messages))
-        messages: messages
+        // getMessages: localStorage.setItem('getMessages', JSON.stringify(getMessages))
+        getMessages: getMessages
     }
 }
 
-export function getLocalStorageSuccess(messages) {
+export function getLocalStorageSuccess(getMessages) {
     return {
         type: GET_LOCAL_STORAGE_SUCCESS,
-        // messages: JSON.parse(localStorage.getItem('messages'))
-        messages: messages
+        // getMessages: JSON.parse(localStorage.getItem('getMessages'))
+        getMessages: getMessages
     }
 }*/

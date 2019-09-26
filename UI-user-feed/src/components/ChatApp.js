@@ -20,24 +20,23 @@ class ChatApp extends Component {
 
     sendMessage(input, messages) {
         messages = this.props.messages;
-        this.props.updateMessages(messages, input); // Update state messages on submitting new message
-        // this.props.updateLocalStorage(messages);
+        this.props.updateMessages(messages, input); // Update store messages on submitting new message
+        // this.props.updateLocalStorage(getMessages);
     }
 
     sendLike(like, index) {
         const likes = this.props.messages[index];
         const messages = this.props.messages;
         messages[index].likes = like;
-        // this.props.updateLocalStorage(messages);
+        // this.props.updateLocalStorage(getMessages);
     }
 
     componentDidMount() {
-        const messages = this.props.messages;
         if(localStorage && localStorage.getItem('messages')) {
-            console.log(`react render ${ '\u221A' }  ${ '\u2192' } componentDidMount ${ '\u221A' }  ${ '\u2192' }`);
-            // this.props.getLocalStorage(messages); // Call Local Storage after first Get request
+            console.log(`React ${ '\u221A' }  ${ '\u2192' } componentDidMount ${ '\u221A' }  ${ '\u2192' }`);
+            // this.props.getLocalStorage(getMessages); // Call Local Storage after first Get request
         }else {
-            console.log(`react render ${ '\u221A' } ${ '\u2192' } componentDidMount ${ '\u221A' }`);
+            console.log(`React ${ '\u221A' } ${ '\u2192' } componentDidMount ${ '\u221A' }`);
             this.props.getMessages(messagesEndPoint); // Make GET request once ChatApp is rendered
         }
     }
@@ -75,8 +74,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getMessages: (url) => dispatch(apiGetDataStart(url)),
         updateMessages: (messages, input) => dispatch(messagesSendStore(messages, input)),
-        // getLocalStorage: (messages) => dispatch(getLocalStorage(messages)),
-        //updateLocalStorage: (messages) => dispatch(messageSaveLocalStorage(messages)),
+        // getLocalStorage: (getMessages) => dispatch(getLocalStorage(getMessages)),
+        //updateLocalStorage: (getMessages) => dispatch(messageSaveLocalStorage(getMessages)),
     };
 };
 

@@ -10,6 +10,6 @@ const messagesStore = createStore (
         updateMessagesMiddleware
     ));
 
-console.log(`store initialized ${'\u221A'}`);
+console.log(`Redux store initialized ${'\u221A'}`);
 
 export default messagesStore;

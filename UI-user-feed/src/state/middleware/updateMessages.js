@@ -11,6 +11,7 @@ const updateMessagesMiddleware = store => next => action => {
     action.messages.map((messages) => {
         newMessageObj.push(messages);
     });
+
     newMessageObj.push(newMessage);
 
     store.dispatch(messagesUpdateStoreSuccess(newMessageObj));
