@@ -15,15 +15,16 @@ const initialState = {
 export function getMessages(store = initialState.messages, action) {
     switch (action.type) {
         case API_GET_DATA_SUCCESS:
-            console.log(`Redux reducer ${'\u2192'} API_GET_DATA_SUCCESS ${'\u221A'}`);
+            console.log(`Redux ${ '\u2192' } reducer ${ '\u2192' } API_GET_DATA_SUCCESS ${ '\u221A' }`);
+            console.log(`Redux store populated: {...} ${ '\u221A' }`);
             return action.messages;
 
         case MESSAGES_SEND_STORE_SUCCESS:
-            console.log(`Redux reducer ${'\u2192'} MESSAGES_SEND_STORE_SUCCESS ${'\u221A'}`);
+            console.log(`Redux ${ '\u2192' } reducer ${ '\u2192' } MESSAGES_SEND_STORE_SUCCESS ${ '\u221A' }`);
             return action.messages;
 
         case MESSAGES_UPDATE_STORE_SUCCESS:
-            console.log(`Redux reducer ${'\u2192'} MESSAGES_UPDATE_STORE_SUCCESS ${'\u221A'}`);
+            console.log(`Redux ${ '\u2192' } reducer ${ '\u2192' } MESSAGES_UPDATE_STORE_SUCCESS ${ '\u221A'  }`);
             return action.messages;
 
        /* case GET_LOCAL_STORAGE_SUCCESS:
@@ -42,7 +43,7 @@ export function getMessages(store = initialState.messages, action) {
 export function url(store = initialState.url, action) {
     switch (action.type) {
         case API_GET_DATA_START:
-            console.log(`Redux reducer ${'\u2192'} API_GET_DATA_START ${'\u221A'}`);
+            console.log(`Redux ${ '\u2192' } reducer ${ '\u2192' } API_GET_DATA_START ${ '\u221A'}` );
             return action.url;
 
         default:

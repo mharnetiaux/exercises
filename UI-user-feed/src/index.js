@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import messagesStore from './state/store/messagesStore';
+import messagesStore from './state/store/messages/messagesStore';
 import ChatApp from './components/ChatApp';
 
 render(
