@@ -33,7 +33,7 @@ class ChatApp extends Component {
 
     componentDidMount() {
         if(localStorage && localStorage.getItem('messages')) {
-            console.log(`React ${ '\u2192' } componentDidMount(); ${ '\u221A' }  ${ '\u2192' }`);
+            console.log(`React ${ '\u2192' } componentDidMount(); ${ '\u221A' }`);
             // this.props.getLocalStorage(getMessages); // Call Local Storage after first Get request
         }else {
             console.log(`React ${ '\u2192' } componentDidMount(); ${ '\u221A' }`);
