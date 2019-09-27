@@ -5,7 +5,7 @@ const getMessagesMiddleware = store => next => action => {
     next(action);
 
     if (action.type !== API_GET_DATA_START) return;
-    console.log(`Redux ${ '\u2192' } middleware ${'\u2192'} API_START_GET ${ '\u221A' }`);
+    console.log(`Redux ${ '\u2192' } middleware ${'\u2192'} API_GET_DATA_START ${ '\u221A' }`);
 
     fetch(action.url)
         .then((response) => {
