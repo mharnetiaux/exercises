@@ -7,6 +7,7 @@ import expect from 'expect';
 
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
+const url = 'https://raw./UI-user-feed/data.json';
 const mockData = {
     "feed": [
         {
@@ -28,23 +29,25 @@ const mockData = {
     ]
 };
 
-describe('async actions', () => {
+describe('async messages get request', () => {
     afterEach(() => {
         fetchMock.restore()
     });
 
-    it('creates FETCH_MESSAGES_SUCCESS when fetching messages has been done', () => {
-        const url = "https://www.blah/messages";
+    it('creates FETCH_TODOS_SUCCESS when fetching todos has been done', () => {
         fetchMock.get(url, {
             body: mockData,
             headers: { 'content-type': 'application/json' }
         });
 
-        const expectedActions = { type: types.FETCH_DATA_SUCCESS, mockData };
+        const expectedActions = [
+            { type: types.FETCH_DATA_SUCCESS, mockData }
+        ];
         const store = mockStore(mockData);
 
-        return store.dispatch(actions.fetchMessages(url), () => {
-            expect(store.getActions()).toEqual(expectedActions)
+        return store.dispatch(actions.fetchMessages(url)).then(() => {
+            // return of async actions
+            expect(actions.fetchMessagesSuccess(mockData)).toEqual(expectedActions)
         })
     })
 });

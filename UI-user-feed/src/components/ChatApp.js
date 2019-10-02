@@ -79,5 +79,4 @@ const mapDispatchToProps = (dispatch) => {
         //updateLocalStorage: (getMessages) => dispatch(messageSaveLocalStorage(getMessages)),
     };
 };
-
 export default connect(mapStoreToProps, mapDispatchToProps)(ChatApp);

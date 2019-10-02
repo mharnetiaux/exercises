@@ -5,9 +5,7 @@ import {
     // LOCAL_STORAGE_SAVE_SUCCESS
 } from "../../actions/types";
 
-const initialState = {
-    messages: []
-};
+const initialState = {};
 
 export function messages(store = initialState.messages, action) {
     switch (action.type) {
