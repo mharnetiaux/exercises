@@ -26,7 +26,7 @@ export function fetchMessagesSuccess(messages) {
     console.log(`Redux ${ '\u2192' } action ${ '\u2192' } API_GET_DATA_SUCCESS ${ '\u221A' }`);
     return {
         type: FETCH_DATA_SUCCESS,
-        messages: messages
+        messages
     }
 }
 
