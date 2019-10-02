@@ -2,14 +2,6 @@ import * as actions from '../../../src/state/actions/messages';
 import * as types from '../../../src/state/actions/types';
 
 describe('actions for messages', () => {
-    it('should create an action to get API endpoint', () => {
-        const url = "https://something.api/";
-        const expectedAction = {
-            type: types.API_GET_DATA_START,
-            url: url
-        };
-        expect(actions.apiGetDataStart(url)).toEqual(expectedAction)
-    });
 
     it('should create an action to get messages', () => {
         const messages = {};

@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux';
-import { messages, url } from './getMessages';
+import { messages } from './getMessages';
 
-export default combineReducers({ messages, url });
+export default combineReducers({ messages });

@@ -1,5 +1,4 @@
 import {
-    API_GET_DATA_START,
     API_GET_DATA_SUCCESS,
     MESSAGES_SEND_STORE_SUCCESS,
     MESSAGES_UPDATE_STORE_SUCCESS,
@@ -8,8 +7,7 @@ import {
 } from "../../actions/types";
 
 const initialState = {
-    messages: [],
-    url: ''
+    messages: []
 };
 
 export function messages(store = initialState.messages, action) {
@@ -17,10 +15,6 @@ export function messages(store = initialState.messages, action) {
         case API_GET_DATA_SUCCESS:
             console.log(`Redux ${ '\u2192' } reducer ${ '\u2192' } API_GET_DATA_SUCCESS ${ '\u221A' }`);
             console.log(`Redux store populated: {...} ${ '\u221A' }`);
-            return action.messages;
-
-        case MESSAGES_SEND_STORE_SUCCESS:
-            console.log(`Redux ${ '\u2192' } reducer ${ '\u2192' } MESSAGES_SEND_STORE_SUCCESS ${ '\u221A' }`);
             return action.messages;
 
         case MESSAGES_UPDATE_STORE_SUCCESS:
@@ -34,17 +28,6 @@ export function messages(store = initialState.messages, action) {
         case LOCAL_STORAGE_SAVE_SUCCESS:
             console.log(`reducer ${'\u2192'} LOCAL_STORAGE_SAVE_SUCCESS ${'\u221A'}`);
             return action.getMessages;*/
-
-        default:
-            return store;
-    }
-}
-
-export function url(store = initialState.url, action) {
-    switch (action.type) {
-        case API_GET_DATA_START:
-            console.log(`Redux ${ '\u2192' } reducer ${ '\u2192' } API_GET_DATA_START ${ '\u221A'}` );
-            return action.url;
 
         default:
             return store;

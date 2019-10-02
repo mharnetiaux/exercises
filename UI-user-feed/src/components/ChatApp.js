@@ -6,10 +6,10 @@ import { messagesEndPoint } from '../utils/api/messageEndPoint';
 import SendMessage from './SendMessage.js';
 import Message from './Message'
 import {
-    apiGetDataStart,
+    fetchMessages,
     // messageSaveLocalStorage,
     // getLocalStorage,
-    messagesSendStore } from '../state/actions/messages';
+    sendMessage } from '../state/actions/messages';
 
 class ChatApp extends Component {
     constructor(props) {
@@ -38,7 +38,7 @@ class ChatApp extends Component {
             // this.props.getLocalStorage(getMessages); // Call Local Storage after first Get request
         }else {
             console.log(`React ${ '\u2192' } life cycle ${ '\u2192' } componentDidMount(); ${ '\u221A' }`);
-            this.props.getMessages(messagesEndPoint); // Make GET request once ChatApp is rendered
+            this.props.fetchMessages(messagesEndPoint); // Make GET request once ChatApp is rendered
         }
     }
 
@@ -61,7 +61,7 @@ class ChatApp extends Component {
 
 ChatApp.propTypes = {
     messages: PropTypes.array.isRequired,
-    getMessages:  PropTypes.func.isRequired,
+    fetchMessages:  PropTypes.func.isRequired,
     // getLocalStorage:  PropTypes.func.isRequired,
     // updateLocalStorage: PropTypes.func.isRequired,
     updateMessages: PropTypes.func.isRequired
@@ -73,8 +73,8 @@ const mapStoreToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getMessages: (url) => dispatch(apiGetDataStart(url)),
-        updateMessages: (messages, input) => dispatch(messagesSendStore(messages, input)),
+        fetchMessages: (url) => dispatch(fetchMessages(url)),
+        updateMessages: (messages, input) => dispatch(sendMessage(messages, input)),
         // getLocalStorage: (getMessages) => dispatch(getLocalStorage(getMessages)),
         //updateLocalStorage: (getMessages) => dispatch(messageSaveLocalStorage(getMessages)),
     };
