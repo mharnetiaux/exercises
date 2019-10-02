@@ -12,7 +12,7 @@ const initialState = {
     url: ''
 };
 
-export function getMessages(store = initialState.messages, action) {
+export function messages(store = initialState.messages, action) {
     switch (action.type) {
         case API_GET_DATA_SUCCESS:
             console.log(`Redux ${ '\u2192' } reducer ${ '\u2192' } API_GET_DATA_SUCCESS ${ '\u221A' }`);

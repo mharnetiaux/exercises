@@ -9,7 +9,7 @@ import {
     apiGetDataStart,
     // messageSaveLocalStorage,
     // getLocalStorage,
-    messagesSendStore } from '../state/actions/messages/getMessages';
+    messagesSendStore } from '../state/actions/messages';
 
 class ChatApp extends Component {
     constructor(props) {
@@ -20,7 +20,8 @@ class ChatApp extends Component {
 
     sendMessage(input, messages) {
         messages = this.props.messages;
-        this.props.updateMessages(messages, input); // Update store messages on submitting new message
+        // Update store messages on submitting new message
+        this.props.updateMessages(messages, input);
         // this.props.updateLocalStorage(getMessages);
     }
 
@@ -33,10 +34,10 @@ class ChatApp extends Component {
 
     componentDidMount() {
         if(localStorage && localStorage.getItem('messages')) {
-            console.log(`React ${ '\u2192' } componentDidMount(); ${ '\u221A' }`);
+            console.log(`React ${ '\u2192' } life cycle ${ '\u2192' } componentDidMount(); ${ '\u221A' }`);
             // this.props.getLocalStorage(getMessages); // Call Local Storage after first Get request
         }else {
-            console.log(`React ${ '\u2192' } componentDidMount(); ${ '\u221A' }`);
+            console.log(`React ${ '\u2192' } life cycle ${ '\u2192' } componentDidMount(); ${ '\u221A' }`);
             this.props.getMessages(messagesEndPoint); // Make GET request once ChatApp is rendered
         }
     }

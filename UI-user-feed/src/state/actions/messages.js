@@ -5,7 +5,7 @@ import {
     MESSAGES_SEND_STORE_SUCCESS,
     // GET_LOCAL_STORAGE_SUCCESS,
     // LOCAL_STORAGE_SAVE_SUCCESS
-} from "../types";
+} from "./types";
 
 export function apiGetDataStart(url) {
     console.log(`Redux ${ '\u2192' } action ${ '\u2192' } API_GET_DATA_START ${ '\u221A' }`);

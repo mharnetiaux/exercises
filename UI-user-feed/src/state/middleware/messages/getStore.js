@@ -1,5 +1,5 @@
 import { API_GET_DATA_START } from "../../actions/types";
-import { apiGetDataSuccess } from "../../actions/messages/getMessages";
+import { apiGetDataSuccess } from "../../actions/messages";
 
 const getMessagesMiddleware = store => next => action => {
     next(action);
