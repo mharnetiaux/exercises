@@ -1,14 +1,14 @@
 import {
-    API_GET_DATA_SUCCESS,
-    MESSAGES_UPDATE_STORE_SUCCESS,
+    FETCH_DATA_SUCCESS,
+    MESSAGES_UPDATE_SUCCESS,
     // GET_LOCAL_STORAGE_SUCCESS,
     // LOCAL_STORAGE_SAVE_SUCCESS
 } from "./types";
 
-export function apiGetMessagesSuccess(messages) {
+export function fetchMessagesSuccess(messages) {
     console.log(`Redux ${ '\u2192' } action ${ '\u2192' } API_GET_DATA_SUCCESS ${ '\u221A' }`);
     return {
-        type: API_GET_DATA_SUCCESS,
+        type: FETCH_DATA_SUCCESS,
         messages: messages
     }
 }
@@ -16,13 +16,12 @@ export function apiGetMessagesSuccess(messages) {
 export function fetchMessages(url) {
     return dispatch => {
         fetch(url)
-            .then((response) => {
-                console.log(`Redux ${ '\u2192' } middleware ${'\u2192'} HTTP response ${'\u2192'} ${ response.status } ${ response.ok } ${ '\u221A' }`);
-                return response.json();
+            .then((res) => {
+                console.log(`Redux ${ '\u2192' } middleware ${'\u2192'} HTTP response ${'\u2192'} ${ res.status } ${ res.ok } ${ '\u221A' }`);
+                return res.json();
             })
-            .then((messages) => {
-                messages = messages['feed'];
-                dispatch(apiGetMessagesSuccess(messages));
+            .then((body) => {
+                dispatch(fetchMessagesSuccess(body));
             })
             .catch((response) => {
                 console.log(`Redux ${ '\u2192' } middleware ${'\u2192'} HTTP ERROR ${'\u2192'} ${ response } ${ '\u221A' }`);
@@ -54,7 +53,7 @@ export function sendMessage(messages, input) {
 export function updateMessages(messages) {
     console.log(`Redux ${ '\u2192' } action ${ '\u2192' } MESSAGES_UPDATE_STORE_SUCCESS ${ '\u221A' }`);
     return {
-        type: MESSAGES_UPDATE_STORE_SUCCESS,
+        type: MESSAGES_UPDATE_SUCCESS,
         messages: messages,
     }
 }

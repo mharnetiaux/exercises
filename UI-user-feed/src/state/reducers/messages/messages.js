@@ -1,7 +1,6 @@
 import {
-    API_GET_DATA_SUCCESS,
-    MESSAGES_SEND_STORE_SUCCESS,
-    MESSAGES_UPDATE_STORE_SUCCESS,
+    FETCH_DATA_SUCCESS,
+    MESSAGES_UPDATE_SUCCESS,
     // GET_LOCAL_STORAGE_SUCCESS,
     // LOCAL_STORAGE_SAVE_SUCCESS
 } from "../../actions/types";
@@ -12,13 +11,13 @@ const initialState = {
 
 export function messages(store = initialState.messages, action) {
     switch (action.type) {
-        case API_GET_DATA_SUCCESS:
-            console.log(`Redux ${ '\u2192' } reducer ${ '\u2192' } API_GET_DATA_SUCCESS ${ '\u221A' }`);
+        case FETCH_DATA_SUCCESS:
+            console.log(`Redux ${ '\u2192' } reducer ${ '\u2192' } FETCH_DATA_SUCCESS ${ '\u221A' }`);
             console.log(`Redux store populated: {...} ${ '\u221A' }`);
             return action.messages;
 
-        case MESSAGES_UPDATE_STORE_SUCCESS:
-            console.log(`Redux ${ '\u2192' } reducer ${ '\u2192' } MESSAGES_UPDATE_STORE_SUCCESS ${ '\u221A'  }`);
+        case MESSAGES_UPDATE_SUCCESS:
+            console.log(`Redux ${ '\u2192' } reducer ${ '\u2192' } MESSAGES_UPDATE_SUCCESS ${ '\u221A'  }`);
             return action.messages;
 
        /* case GET_LOCAL_STORAGE_SUCCESS:

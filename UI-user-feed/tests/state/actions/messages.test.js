@@ -1,34 +1,50 @@
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 import * as actions from '../../../src/state/actions/messages';
 import * as types from '../../../src/state/actions/types';
+import fetchMock from 'fetch-mock';
+import expect from 'expect';
 
-describe('actions for messages', () => {
+const middleware = [thunk];
+const mockStore = configureMockStore(middleware);
+const mockData = {
+    "feed": [
+        {
+            "user": "User 1",
+            "value": "Something user 1 would say...",
+            "id": 1,
+            "timestamp": "1502580722572",
+            "timeZoneOffset": "300",
+            "likes": 3
+        },
+        {
+            "user": "User 2",
+            "value": "Something user 2 did say...",
+            "id": 1,
+            "timestamp": "1502180722530",
+            "timeZoneOffset": "300",
+            "likes": 1
+        }
+    ]
+};
 
-    it('should create an action to get messages', () => {
-        const messages = {};
-        const expectedAction = {
-            type: types.API_GET_DATA_SUCCESS,
-            messages: messages
-        };
-        expect(actions.apiGetDataSuccess(messages)).toEqual(expectedAction)
+describe('async actions', () => {
+    afterEach(() => {
+        fetchMock.restore()
     });
 
-    it('should create an action to add messages', () => {
-        const messages = {};
-        const input = "blah blah blah";
-        const expectedAction = {
-            type: types.MESSAGES_SEND_STORE_SUCCESS,
-            messages: messages,
-            input: input
-        };
-        expect(actions.messagesSendStore(messages, input)).toEqual(expectedAction)
-    });
+    it('creates FETCH_MESSAGES_SUCCESS when fetching messages has been done', () => {
+        const url = "https://www.blah/messages";
+        fetchMock.get(url, {
+            body: mockData,
+            headers: { 'content-type': 'application/json' }
+        });
 
-    it('should create an action to save message', () => {
-        const messages = {};
-        const expectedAction = {
-            type: types.MESSAGES_UPDATE_STORE_SUCCESS,
-            messages: messages
-        };
-        expect(actions.messagesUpdateStoreSuccess(messages)).toEqual(expectedAction)
-    });
+        const expectedActions = { type: types.FETCH_DATA_SUCCESS, mockData };
+        const store = mockStore(mockData);
+
+        return store.dispatch(actions.fetchMessages(url), () => {
+            expect(store.getActions()).toEqual(expectedActions)
+        })
+    })
 });
