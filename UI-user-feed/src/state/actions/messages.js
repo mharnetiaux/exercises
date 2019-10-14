@@ -1,5 +1,5 @@
 import {
-    FETCH_DATA_SUCCESS,
+    FETCH_MESSAGES_SUCCESS,
     MESSAGES_UPDATE_SUCCESS,
     // GET_LOCAL_STORAGE_SUCCESS,
     // LOCAL_STORAGE_SAVE_SUCCESS
@@ -12,8 +12,8 @@ export function fetchMessages(url) {
             console.log(`Redux ${ '\u2192' } middleware ${'\u2192'} HTTP response ${'\u2192'} ${ res.status } ${ res.ok } ${ '\u221A' }`);
             return res.json();
         })
-        .then((body) => {
-            dispatch(fetchMessagesSuccess(body));
+        .then((data) => {
+            dispatch(fetchMessagesSuccess(data['feed']));
         })
         .catch((response) => {
             console.log(`Redux ${ '\u2192' } middleware ${'\u2192'} HTTP ERROR ${'\u2192'} ${ response } ${ '\u221A' }`);
@@ -25,7 +25,7 @@ export function fetchMessages(url) {
 export function fetchMessagesSuccess(messages) {
     console.log(`Redux ${ '\u2192' } action ${ '\u2192' } API_GET_DATA_SUCCESS ${ '\u221A' }`);
     return {
-        type: FETCH_DATA_SUCCESS,
+        type: FETCH_MESSAGES_SUCCESS,
         messages
     }
 }
@@ -39,7 +39,7 @@ export function sendMessage(messages, input) {
             "timestamp": "1502580722572",
             "timeZoneOffset": "300",
             "likes": 3
-        } || 'SEND FAILURE';
+        };
         const newMessageObj = [];
 
         messages.map((messages) => {
