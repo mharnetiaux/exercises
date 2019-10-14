@@ -1,6 +1,7 @@
 import {
     FETCH_MESSAGES_REQUEST,
     FETCH_MESSAGES_SUCCESS,
+    MESSAGES_UPDATE_REQUEST,
     MESSAGES_UPDATE_SUCCESS,
     // GET_LOCAL_STORAGE_SUCCESS,
     // LOCAL_STORAGE_SAVE_SUCCESS
@@ -38,31 +39,26 @@ export function fetchMessagesSuccess(messages) {
     }
 }
 
-export function sendMessage(messages, input) {
-    return dispatch => {
-        const newMessage = {
-            "user": "User 1",
-            "value": input,
-            "id": 1,
-            "timestamp": "1502580722572",
-            "timeZoneOffset": "300",
-            "likes": 3
-        };
-        const newMessageObj = [];
 
-        messages.map((messages) => {
-            newMessageObj.push(messages);
-        });
-        newMessageObj.push(newMessage);
-        dispatch(updateMessages(newMessageObj));
+function sendMessagesRequest() {
+    return {
+        type: MESSAGES_UPDATE_REQUEST
     }
 }
 
-export function updateMessages(messages) {
+export function sendMessage(messages, input) {
+    return dispatch => {
+        dispatch(sendMessagesRequest());
+        dispatch(updateMessages(messages, input));
+    }
+}
+
+export function updateMessages(messages, input) {
     console.log(`Redux ${ '\u2192' } action ${ '\u2192' } MESSAGES_UPDATE_STORE_SUCCESS ${ '\u221A' }`);
     return {
         type: MESSAGES_UPDATE_SUCCESS,
         messages: messages,
+        input: input
     }
 }
 /*export function messageSaveLocalStorage(getMessages) {

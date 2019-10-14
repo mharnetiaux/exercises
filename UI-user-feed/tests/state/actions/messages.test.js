@@ -48,3 +48,23 @@ describe('async messages get request', () => {
         })
     })
 });
+
+describe('async send message request', () => {
+    afterEach(() => {
+        fetchMock.restore()
+    });
+
+    it('creates MESSAGES_UPDATE_SUCCESS when sending a message has been done', () => {
+        const input = "Hey are you coming to the meeting today?";
+        const messages = mockData['feed'];
+        const expectedActions = [
+            { type: types.MESSAGES_UPDATE_REQUEST },
+            { type: types.MESSAGES_UPDATE_SUCCESS, messages: mockData['feed'], input: input }
+        ];
+        const store = mockStore(mockData);
+
+        store.dispatch(actions.sendMessage(messages, input));
+
+        expect(store.getActions()).toEqual(expectedActions);
+    })
+});
