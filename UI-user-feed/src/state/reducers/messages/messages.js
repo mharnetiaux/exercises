@@ -10,7 +10,7 @@ export function messages(store = [], action) {
         case FETCH_MESSAGES_SUCCESS:
             console.log(`Redux ${ '\u2192' } reducer ${ '\u2192' } FETCH_DATA_SUCCESS ${ '\u221A' }`);
             console.log(`Redux store populated: {...} ${ '\u221A' }`);
-            return action.messages;
+            return action.messages['feed'];
 
         case MESSAGES_UPDATE_SUCCESS:
             console.log(`Redux ${ '\u2192' } reducer ${ '\u2192' } MESSAGES_UPDATE_SUCCESS ${ '\u221A'  }`);

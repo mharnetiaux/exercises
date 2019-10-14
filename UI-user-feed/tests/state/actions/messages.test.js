@@ -35,14 +35,10 @@ describe('async messages get request', () => {
     });
 
     it('creates FETCH_MESSAGES_SUCCESS when fetching messages has been done', () => {
-        fetchMock.get(url, {
-            data: mockData,
-            headers: { 'content-type': 'application/json' }
-        });
-
+        fetchMock.get(url, mockData);
         const expectedActions = [
             { type: types.FETCH_MESSAGES_REQUEST },
-            { type: types.FETCH_MESSAGES_SUCCESS }
+            { type: types.FETCH_MESSAGES_SUCCESS, messages: mockData }
         ];
         const store = mockStore(mockData);
 
