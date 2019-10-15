@@ -7,7 +7,7 @@ import SendMessage from './SendMessage.js';
 import Message from './Message'
 import { fetchMessages, sendMessage, sendLike } from '../state/actions/messages';
 
-class ChatApp extends Component {
+class MyMessages extends Component {
     constructor(props) {
         super(props);
         this.sendMessage = this.sendMessage.bind(this);
@@ -48,7 +48,7 @@ class ChatApp extends Component {
     }
 }
 
-ChatApp.propTypes = {
+MyMessages.propTypes = {
     fetchMessages:  PropTypes.func.isRequired,
     messages: PropTypes.array.isRequired,
     sendMessage: PropTypes.func.isRequired
@@ -65,4 +65,4 @@ const mapDispatchToProps = (dispatch) => {
         sendMessage: (messages, input) => dispatch(sendMessage(messages, input)),
     };
 };
-export default connect(mapStoreToProps, mapDispatchToProps)(ChatApp);
+export default connect(mapStoreToProps, mapDispatchToProps)(MyMessages);
