@@ -1,6 +1,6 @@
 import {
     FETCH_MESSAGES_SUCCESS,
-    MESSAGES_UPDATE_SUCCESS,
+    UPDATE_MESSAGES_SUCCESS,
 } from "../../actions/types";
 
 export function messages(store = [], action) {
@@ -10,7 +10,7 @@ export function messages(store = [], action) {
             console.log(`Redux store populated: {...} ${ '\u221A' }`);
             return action.messages['feed'];
 
-        case MESSAGES_UPDATE_SUCCESS:
+        case UPDATE_MESSAGES_SUCCESS:
             const newMessage = {
                 "user": "User 1",
                 "value": action.input,

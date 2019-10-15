@@ -19,9 +19,9 @@ class ChatApp extends Component {
         this.props.updateMessages(messages, input);
     }
 
-    sendLike(like, index) {
+    sendLike(likes, index) {
         const message = this.props.messages[index];
-        message.likes = like;
+        message.likes = likes;
     }
 
     componentDidMount() {

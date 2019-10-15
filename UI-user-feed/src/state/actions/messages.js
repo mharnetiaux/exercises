@@ -1,6 +1,6 @@
 import {
     FETCH_MESSAGES_SUCCESS,
-    MESSAGES_UPDATE_SUCCESS,
+    UPDATE_MESSAGES_SUCCESS,
 } from "./types";
 
 export function fetchMessages(url) {
@@ -37,7 +37,7 @@ export function sendMessage(messages, input) {
 export function updateMessages(messages, input) {
     console.log(`Redux ${ '\u2192' } action ${ '\u2192' } MESSAGES_UPDATE_STORE_SUCCESS ${ '\u221A' }`);
     return {
-        type: MESSAGES_UPDATE_SUCCESS,
+        type: UPDATE_MESSAGES_SUCCESS,
         messages: messages,
         input: input
     }
