@@ -26,7 +26,6 @@ class ChatApp extends Component {
     }
 
     componentDidMount() {
-        console.log(`React ${ '\u2192' } life cycle ${ '\u2192' } componentDidMount(); ${ '\u221A' }`);
         this.props.fetchMessages(messagesEndPoint);
     }
 
