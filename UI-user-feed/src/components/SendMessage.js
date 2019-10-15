@@ -9,19 +9,19 @@ class SendMessage extends Component {
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
-    onChange(e) {
-        this.setState({input: e.target.value});
+    onChange(event) {
+        this.setState({input: event.target.value});
     }
-    onSubmit(e) {
-        e.preventDefault();
+    onSubmit(event) {
+        event.preventDefault();
         this.setState({ input: ""} );
         this.props.sendMessage(this.state.input);
     }
     render() {
         return(
-            <form onSubmit={ e => this.onSubmit(e) }>
+            <form onSubmit={ event => this.onSubmit(event) }>
                 <input
-                    onChange={ e => this.onChange(e) }
+                    onChange={ event => this.onChange(event) }
                     value={ this.state.input }
                     type="text"
                     placeholder="Enter message"

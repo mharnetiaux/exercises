@@ -29,12 +29,12 @@ const mockData = {
     ]
 };
 
-describe('async messages get request', () => {
+describe('Async AJAX:GET messages request.', () => {
     afterEach(() => {
         fetchMock.restore()
     });
 
-    it('creates FETCH_MESSAGES_SUCCESS when fetching messages has been done', () => {
+    it('Creates FETCH_MESSAGES_SUCCESS, when fetching messages has been sent, and has a successful response;', () => {
         fetchMock.get(url, mockData);
         const expectedActions = [
             { type: types.FETCH_MESSAGES_SUCCESS, messages: mockData }
@@ -46,12 +46,12 @@ describe('async messages get request', () => {
     })
 });
 
-describe('async send message request', () => {
+describe('Async send message.', () => {
     afterEach(() => {
         fetchMock.restore()
     });
 
-    it('creates MESSAGES_UPDATE_SUCCESS when sending a message has been done', () => {
+    it('Creates MESSAGES_UPDATE_SUCCESS, when message has been changed, and sent.', () => {
         const input = "Hey are you coming to the meeting today?";
         const messages = mockData['feed'];
         const expectedActions = [
@@ -63,12 +63,12 @@ describe('async send message request', () => {
     })
 });
 
-describe('async send message request', () => {
+describe('Async send like.', () => {
     afterEach(() => {
         fetchMock.restore()
     });
 
-    it('creates LIKES_UPDATE_SUCCESS when users like button is clicked', () => {
+    it('Creates LIKES_UPDATE_SUCCESS, when like button has been clicked, and updated.', () => {
         const message = {
             "user": "User 3",
             "value":"what's happening",

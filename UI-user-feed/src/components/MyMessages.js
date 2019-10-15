@@ -55,7 +55,6 @@ MyMessages.propTypes = {
 const mapStoreToProps = (store) => {
     return store;
 };
-
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchMessages: (url) => dispatch(fetchMessages(url)),
@@ -63,4 +62,5 @@ const mapDispatchToProps = (dispatch) => {
         sendMessage: (messages, input) => dispatch(sendMessage(messages, input)),
     };
 };
+
 export default connect(mapStoreToProps, mapDispatchToProps)(MyMessages);
