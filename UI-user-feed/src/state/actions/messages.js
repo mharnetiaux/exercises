@@ -14,7 +14,6 @@ export function fetchMessages(url) {
             dispatch(fetchMessagesSuccess(messages));
         })
         .catch((response) => {
-            console.log(`Redux ${ '\u2192' } middleware ${ '\u2192' } HTTP ERROR ${ '\u2192' } ${ response } ${ '\u221A' }`);
             throw Error(`${ response }`);
         });
     }
