@@ -16,11 +16,7 @@ export function messages(store = [], action) {
 
         case UPDATE_MESSAGES_SUCCESS:
             const newMessage = {
-                "user": "User 3",
                 "value": action.input,
-                "id": 3,
-                "timestamp": "1502580722572",
-                "timeZoneOffset": "300",
                 "likes": 0
             };
             const messages = [];

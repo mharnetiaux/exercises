@@ -63,7 +63,6 @@ describe('async send message request', () => {
     })
 });
 
-
 describe('async send message request', () => {
     afterEach(() => {
         fetchMock.restore()
