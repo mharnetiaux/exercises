@@ -1,19 +1,10 @@
 import {
-    FETCH_MESSAGES_REQUEST,
     FETCH_MESSAGES_SUCCESS,
-    MESSAGES_UPDATE_REQUEST,
     MESSAGES_UPDATE_SUCCESS,
 } from "./types";
 
-function fetchMessagesRequest() {
-    return {
-        type: FETCH_MESSAGES_REQUEST
-    }
-}
-
 export function fetchMessages(url) {
     return dispatch => {
-        dispatch(fetchMessagesRequest());
         return fetch(url)
         .then((res) => {
             console.log(`Redux ${ '\u2192' } middleware ${'\u2192'} HTTP response ${'\u2192'} ${ res.status } ${ res.ok } ${ '\u221A' }`);
@@ -37,16 +28,8 @@ export function fetchMessagesSuccess(messages) {
     }
 }
 
-
-function sendMessagesRequest() {
-    return {
-        type: MESSAGES_UPDATE_REQUEST
-    }
-}
-
 export function sendMessage(messages, input) {
     return dispatch => {
-        dispatch(sendMessagesRequest());
         dispatch(updateMessages(messages, input));
     }
 }

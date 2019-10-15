@@ -37,7 +37,6 @@ describe('async messages get request', () => {
     it('creates FETCH_MESSAGES_SUCCESS when fetching messages has been done', () => {
         fetchMock.get(url, mockData);
         const expectedActions = [
-            { type: types.FETCH_MESSAGES_REQUEST },
             { type: types.FETCH_MESSAGES_SUCCESS, messages: mockData }
         ];
         const store = mockStore(mockData);
@@ -58,7 +57,6 @@ describe('async send message request', () => {
         const input = "Hey are you coming to the meeting today?";
         const messages = mockData['feed'];
         const expectedActions = [
-            { type: types.MESSAGES_UPDATE_REQUEST },
             { type: types.MESSAGES_UPDATE_SUCCESS, messages: mockData['feed'], input: input }
         ];
         const store = mockStore(mockData);

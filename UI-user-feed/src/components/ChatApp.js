@@ -20,9 +20,8 @@ class ChatApp extends Component {
     }
 
     sendLike(like, index) {
-        const likes = this.props.messages[index];
-        const messages = this.props.messages;
-        messages[index].likes = like;
+        const message = this.props.messages[index];
+        message.likes = like;
     }
 
     componentDidMount() {
