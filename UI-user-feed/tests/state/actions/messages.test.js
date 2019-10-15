@@ -41,7 +41,6 @@ describe('async messages get request', () => {
         ];
         const store = mockStore(mockData);
         return store.dispatch(actions.fetchMessages(url)).then(() => {
-            // return of async actions
             expect(store.getActions()).toEqual(expectedActions);
         })
     })
