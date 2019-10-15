@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { messagesEndPoint } from '../utils/api/messageEndPoint';
 import SendMessage from './SendMessage.js';
 import Message from './Message'
-import { fetchMessages, sendMessage } from '../state/actions/messages';
+import { fetchMessages, sendMessage, sendLike } from '../state/actions/messages';
 
 class ChatApp extends Component {
     constructor(props) {
@@ -16,21 +16,18 @@ class ChatApp extends Component {
 
     sendMessage(input, messages) {
         messages = this.props.messages;
-        this.props.updateMessages(messages, input);
+        this.props.sendMessage(messages, input);
     }
 
     sendLike(likes, index) {
         const message = this.props.messages[index];
         message.likes = likes;
+        this.props.sendLike(message);
     }
 
     componentDidMount() {
-        if(localStorage && localStorage.getItem('messages')) {
-            console.log(`React ${ '\u2192' } life cycle ${ '\u2192' } componentDidMount(); ${ '\u221A' }`);
-        }else {
-            console.log(`React ${ '\u2192' } life cycle ${ '\u2192' } componentDidMount(); ${ '\u221A' }`);
-            this.props.fetchMessages(messagesEndPoint); // Make GET request once ChatApp is rendered
-        }
+        console.log(`React ${ '\u2192' } life cycle ${ '\u2192' } componentDidMount(); ${ '\u221A' }`);
+        this.props.fetchMessages(messagesEndPoint);
     }
 
     render() {
@@ -38,7 +35,9 @@ class ChatApp extends Component {
         const messageCount = messages.length;
         return (
             <main>
-                <header><h2 className="messageCount">( Messages <span>{ messageCount } )</span>...</h2></header>
+                <header>
+                    <h2 className="messageCount">( Messages <span>{ messageCount } )</span>...</h2>
+                </header>
                 <section>
                     <Message messages={ messages } sendLike={ this.sendLike } />
                 </section>
@@ -51,9 +50,9 @@ class ChatApp extends Component {
 }
 
 ChatApp.propTypes = {
-    messages: PropTypes.array.isRequired,
     fetchMessages:  PropTypes.func.isRequired,
-    updateMessages: PropTypes.func.isRequired
+    messages: PropTypes.array.isRequired,
+    sendMessage: PropTypes.func.isRequired
 };
 
 const mapStoreToProps = (store) => {
@@ -63,7 +62,8 @@ const mapStoreToProps = (store) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchMessages: (url) => dispatch(fetchMessages(url)),
-        updateMessages: (messages, input) => dispatch(sendMessage(messages, input)),
+        sendLike: (message) => dispatch(sendLike(message)),
+        sendMessage: (messages, input) => dispatch(sendMessage(messages, input)),
     };
 };
 export default connect(mapStoreToProps, mapDispatchToProps)(ChatApp);

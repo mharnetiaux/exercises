@@ -5,8 +5,8 @@ import * as types from '../../../src/state/actions/types';
 import fetchMock from 'fetch-mock';
 import expect from 'expect';
 
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
+const middleware = [thunk];
+const mockStore = configureMockStore(middleware);
 const url = 'https://raw./UI-user-feed/data.json';
 const mockData = {
     "feed": [
@@ -21,7 +21,7 @@ const mockData = {
         {
             "user": "User 2",
             "value": "Something user 2 did say...",
-            "id": 1,
+            "id": 2,
             "timestamp": "1502180722530",
             "timeZoneOffset": "300",
             "likes": 1
@@ -40,7 +40,6 @@ describe('async messages get request', () => {
             { type: types.FETCH_MESSAGES_SUCCESS, messages: mockData }
         ];
         const store = mockStore(mockData);
-
         return store.dispatch(actions.fetchMessages(url)).then(() => {
             // return of async actions
             expect(store.getActions()).toEqual(expectedActions);
@@ -57,12 +56,34 @@ describe('async send message request', () => {
         const input = "Hey are you coming to the meeting today?";
         const messages = mockData['feed'];
         const expectedActions = [
-            { type: types.MESSAGES_UPDATE_SUCCESS, messages: mockData['feed'], input: input }
+            { type: types.UPDATE_MESSAGES_SUCCESS, messages: mockData['feed'], input: input }
         ];
         const store = mockStore(mockData);
-
         store.dispatch(actions.sendMessage(messages, input));
+        expect(store.getActions()).toEqual(expectedActions);
+    })
+});
 
+
+describe('async send message request', () => {
+    afterEach(() => {
+        fetchMock.restore()
+    });
+
+    it('creates LIKES_UPDATE_SUCCESS when users like button is clicked', () => {
+        const message = {
+            "user": "User 3",
+            "value":"what's happening",
+            "id": 3,
+            "timestamp": "1502580722572",
+            "timeZoneOffset": "300",
+            "likes": 0
+        };
+        const expectedActions = [
+            { type: types.UPDATE_LIKES_SUCCESS, message: message }
+        ];
+        const store = mockStore(mockData);
+        store.dispatch(actions.sendLike(message));
         expect(store.getActions()).toEqual(expectedActions);
     })
 });

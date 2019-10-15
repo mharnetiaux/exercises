@@ -1,5 +1,6 @@
 import {
     FETCH_MESSAGES_SUCCESS,
+    UPDATE_LIKES_SUCCESS,
     UPDATE_MESSAGES_SUCCESS,
 } from "./types";
 
@@ -7,14 +8,14 @@ export function fetchMessages(url) {
     return dispatch => {
         return fetch(url)
         .then((res) => {
-            console.log(`Redux ${ '\u2192' } middleware ${'\u2192'} HTTP response ${'\u2192'} ${ res.status } ${ res.ok } ${ '\u221A' }`);
+            console.log(`Redux ${ '\u2192' } middleware ${ '\u2192' } HTTP response ${ '\u2192' } ${ res.status } ${ res.ok } ${ '\u221A' }`);
             return res.json();
         })
         .then((messages) => {
             dispatch(fetchMessagesSuccess(messages));
         })
         .catch((response) => {
-            console.log(`Redux ${ '\u2192' } middleware ${'\u2192'} HTTP ERROR ${'\u2192'} ${ response } ${ '\u221A' }`);
+            console.log(`Redux ${ '\u2192' } middleware ${ '\u2192' } HTTP ERROR ${ '\u2192' } ${ response } ${ '\u221A' }`);
             throw Error(`${ response }`);
         });
     }
@@ -40,5 +41,19 @@ export function updateMessages(messages, input) {
         type: UPDATE_MESSAGES_SUCCESS,
         messages: messages,
         input: input
+    }
+}
+
+export function sendLike(message) {
+    return dispatch => {
+        dispatch(updateLikes(message));
+    }
+}
+
+export function updateLikes(message) {
+    console.log(`Redux ${ '\u2192' } action ${ '\u2192' } MESSAGES_UPDATE_STORE_SUCCESS ${ '\u221A' }`);
+    return {
+        type: UPDATE_LIKES_SUCCESS,
+        message: message
     }
 }

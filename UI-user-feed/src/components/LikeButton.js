@@ -7,17 +7,15 @@ class LikeButton extends Component {
             index: this.props.index,
             likes: this.props.likes
         };
-        this.handleLike = this.handleLike.bind(this);
+        this.incrementLikes = this.incrementLikes.bind(this);
     }
-    // Increment like count
-    handleLike() {
+    incrementLikes() {
         this.setState({ likes: this.state.likes += 1 });
         this.props.sendLike(this.state.likes, this.state.index);
     }
-
     render() {
         return(
-            <button onClick={ this.handleLike }>{ this.state.likes }</button>
+            <button onClick={ this.incrementLikes }>{ this.state.likes }</button>
         );
     }
 }
