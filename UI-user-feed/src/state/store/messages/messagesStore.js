@@ -5,7 +5,6 @@ import messagesReducer from '../../reducers/messages';
 const messagesStore = createStore(
     messagesReducer,
     applyMiddleware((thunk)));
-
-console.log(`Redux ${ '\u2192' } store ${ '\u2192' } store initialized ${ '\u2192' } store: {} ${'\u221A'}`);
+    console.log(`Redux ${ '\u2192' } store:messages ${ '\u2192' } initialized ${ '\u2192' } messages: [] ${'\u221A'}`);
 
 export default messagesStore;
