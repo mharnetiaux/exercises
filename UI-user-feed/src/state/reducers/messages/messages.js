@@ -24,7 +24,7 @@ export function messages(store = [], action) {
                 "likes": 0
             };
             const messages = [];
-            action.messages.map((message) => {
+            action.messages.forEach((message) => {
                 messages.push(message);
             });
             messages.push(newMessage);
