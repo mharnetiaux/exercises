@@ -3,8 +3,6 @@ import {
     FETCH_MESSAGES_SUCCESS,
     MESSAGES_UPDATE_REQUEST,
     MESSAGES_UPDATE_SUCCESS,
-    // GET_LOCAL_STORAGE_SUCCESS,
-    // LOCAL_STORAGE_SAVE_SUCCESS
 } from "./types";
 
 function fetchMessagesRequest() {
@@ -61,18 +59,3 @@ export function updateMessages(messages, input) {
         input: input
     }
 }
-/*export function messageSaveLocalStorage(getMessages) {
-    return {
-        type: LOCAL_STORAGE_SAVE_SUCCESS,
-        // getMessages: localStorage.setItem('getMessages', JSON.stringify(getMessages))
-        getMessages: getMessages
-    }
-}
-
-export function getLocalStorageSuccess(getMessages) {
-    return {
-        type: GET_LOCAL_STORAGE_SUCCESS,
-        // getMessages: JSON.parse(localStorage.getItem('getMessages'))
-        getMessages: getMessages
-    }
-}*/
