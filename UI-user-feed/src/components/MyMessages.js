@@ -10,8 +10,6 @@ import { fetchMessages, sendMessage, sendLike } from '../state/actions/messages'
 class MyMessages extends Component {
     constructor(props) {
         super(props);
-        this.sendMessage = this.sendMessage.bind(this);
-        this.sendLike = this.sendLike.bind(this);
     }
 
     sendMessage(input, messages) {
@@ -38,10 +36,10 @@ class MyMessages extends Component {
                     <h2 className="messageCount">( Messages <span>{ messageCount } )</span>...</h2>
                 </header>
                 <section>
-                    <Message messages={ messages } sendLike={ this.sendLike } />
+                    <Message messages={ messages } sendLike={ this.sendLike.bind(this) } />
                 </section>
                 <footer>
-                    <SendMessage sendMessage={ this.sendMessage } />
+                    <SendMessage sendMessage={ this.sendMessage.bind(this) } />
                 </footer>
             </main>
         );
